@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -47,23 +53,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Vistas\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Controles\Conexion.cs" />
+    <Compile Include="Controles\Control_persona.cs" />
+    <Compile Include="Controles\Control_rol.cs" />
+    <Compile Include="Controles\Control_usuario.cs" />
+    <Compile Include="Controles\Reporte.cs" />
+    <Compile Include="Models\Persona_modelo.cs" />
+    <Compile Include="Models\Rol_modelo.cs" />
+    <Compile Include="Models\Usuario_modelo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\personas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\personas.Designer.cs">
+      <DependentUpon>personas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\principal.Designer.cs">
+      <DependentUpon>principal.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\personas.resx">
+      <DependentUpon>personas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\principal.resx">
+      <DependentUpon>principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,8 +115,97 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controles\" />
-    <Folder Include="Models\" />
+    <None Include="Resources\persona1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xls.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\313-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\afiliado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aplicar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aplicar224.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bloquear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buscar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cacelar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cuentas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debloquear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deposito.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Editar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\finance_money_coin_bill_cash_payment_icon_141995.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\limpiar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu_onn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuevo24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nuevo224.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\persona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prestamo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sipres_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

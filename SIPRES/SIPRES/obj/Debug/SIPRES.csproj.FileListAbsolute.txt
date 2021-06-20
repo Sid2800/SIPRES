@@ -1,0 +1,16 @@
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.csprojAssemblyReference.cache
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Properties.Resources.resources
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.login.resources
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.csproj.GenerateResource.cache
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.csproj.CoreCompileInputs.cache
+C:\Sipres\SIPRES\SIPRES\bin\Debug\SIPRES.exe.config
+C:\Sipres\SIPRES\SIPRES\bin\Debug\SIPRES.exe
+C:\Sipres\SIPRES\SIPRES\bin\Debug\SIPRES.pdb
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.exe
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.pdb
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.principal.resources
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.persona.resources
+C:\Sipres\SIPRES\SIPRES\bin\Debug\BouncyCastle.Crypto.dll
+C:\Sipres\SIPRES\SIPRES\bin\Debug\itextsharp.dll
+C:\Sipres\SIPRES\SIPRES\bin\Debug\itextsharp.xml
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.csproj.CopyComplete
