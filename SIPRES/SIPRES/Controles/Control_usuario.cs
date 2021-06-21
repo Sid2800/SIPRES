@@ -109,64 +109,62 @@ namespace SIPRES.Controles
             catch (Exception e) { MessageBox.Show(e.Message); }
         }
 
-        //public Boolean Actualizar_usuario(Usuario_modelo var)
-        //{
+        public Boolean Actualizar_usuario(Usuario_modelo var)
+        {
 
-        //    Boolean modificado = false;
-        //    try
-        //    {
-        //        using (SqlConnection sqlCon = new Conexion().CadenaConexion())
-        //        {
-        //            sqlCon.Open();
+            Boolean modificado = false;
+            try
+            {
+                using (SqlConnection sqlCon = new Conexion().CadenaConexion())
+                {
+                    sqlCon.Open();
 
-        //            string Qry = "update [dbo].[usuario] set contra = '" + var.Contra +
-        //           "' , categoria = '" + var.Categoria + "' , estado = '" + var.Estado + "' where id_usu = '" + var.Id_usu + "';";
-
-        //            using (SqlCommand cmd = new SqlCommand(Qry, sqlCon))
-        //            {
-        //                cmd.ExecuteNonQuery();
-        //                modificado = true;
-        //            }
-        //            sqlCon.Close();
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.Message);
-        //        modificado = false;
-        //    }
-        //    return modificado;
-        //}
-
-        //public Boolean Añadir_usuario(Usuario_modelo var)
-        //{
-        //    Boolean agregado = false;
-        //    try
-        //    {
-        //        using (SqlConnection sqlCon = new Conexion().CadenaConexion())
-        //        {
-        //            sqlCon.Open();
-        //            string Qry = "insert into [dbo].[usuario] (id_usu,contra,categoria,estado,identidad) values ( '" + var.Id_usu + "','" + var.Contra + "','" + var.Categoria +
-        //             "','" + var.Estado + "','" + var.Identidad + "');";
-
-        //            using (SqlCommand cmd = new SqlCommand(Qry, sqlCon))
-        //            {
-        //                cmd.ExecuteNonQuery();
-        //                agregado = true;
-        //            }
-        //            sqlCon.Close();
-
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.Message);
-        //        agregado = false;
-        //    }
-        //    return agregado;
-        //}
+                    string Qry = "update [dbo].[usuario] set activo = '" + var.Activo +
+                        "' , contra = '" + var.Contra + "' , id_rol = '" + var.Id_rol + "' where id_usu = '" + var.Id_usu + "';";
 
 
+                    using (SqlCommand cmd = new SqlCommand(Qry, sqlCon))
+                    {
+                        cmd.ExecuteNonQuery();
+                        modificado = true;
+                    }
+                    sqlCon.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                modificado = false;
+            }
+            return modificado;
+        }
+
+        public Boolean Añadir_usuario(Usuario_modelo var)
+        {
+            Boolean agregado = false;
+            try
+            {
+                using (SqlConnection sqlCon = new Conexion().CadenaConexion())
+                {
+                    sqlCon.Open();
+                    string Qry = "insert into [dbo].[usuario] VALUES ( '" + var.Id_usu + "','" + var.Activo + "','" + var.Contra +
+                       "','" + var.Int_log + "','" + var.Id_rol + "','" + var.Identidad + "');";
+                    using (SqlCommand cmd = new SqlCommand(Qry, sqlCon))
+                    {
+                        cmd.ExecuteNonQuery();
+                        agregado = true;
+                    }
+                    sqlCon.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                agregado = false;
+            }
+            return agregado;
+        }
+        
         public Boolean Desactivar_usuario(Boolean var, String Id)
         {
 

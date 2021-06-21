@@ -34,15 +34,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TC_persona = new System.Windows.Forms.TabControl();
             this.TP_listar = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BT_pdf = new System.Windows.Forms.Button();
+            this.BT_nuevo_mini = new System.Windows.Forms.Button();
+            this.BT_editar_mini = new System.Windows.Forms.Button();
+            this.BT_excel = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BT_limpiar = new System.Windows.Forms.Button();
             this.DGV_datos = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.TX_buscar = new System.Windows.Forms.TextBox();
             this.TP_administrar = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TX_rtn = new System.Windows.Forms.MaskedTextBox();
             this.TX_apellido = new System.Windows.Forms.MaskedTextBox();
             this.TX_nombre = new System.Windows.Forms.MaskedTextBox();
             this.TX_identidad = new System.Windows.Forms.MaskedTextBox();
@@ -56,6 +64,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TX_direccion = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.TX_correo = new System.Windows.Forms.TextBox();
             this.TX_tell_cell = new System.Windows.Forms.MaskedTextBox();
             this.TX_tel_fijo = new System.Windows.Forms.MaskedTextBox();
@@ -63,23 +73,15 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.TX_rtn = new System.Windows.Forms.MaskedTextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TX_direccion = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.BT_pdf = new System.Windows.Forms.Button();
-            this.BT_nuevo_mini = new System.Windows.Forms.Button();
-            this.BT_editar_mini = new System.Windows.Forms.Button();
-            this.BT_excel = new System.Windows.Forms.Button();
-            this.BT_limpiar = new System.Windows.Forms.Button();
             this.BT_cancelar = new System.Windows.Forms.Button();
             this.BT_editar = new System.Windows.Forms.Button();
             this.BT_guardar = new System.Windows.Forms.Button();
             this.BT_nuevo = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SFD_excel = new System.Windows.Forms.SaveFileDialog();
             this.SFD_pdf = new System.Windows.Forms.SaveFileDialog();
+            this.BT_salir = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.TC_persona.SuspendLayout();
             this.TP_listar.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -89,18 +91,30 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(113)))), ((int)(((byte)(69)))));
+            this.panel3.Controls.Add(this.BT_salir);
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(62, 515);
             this.panel3.TabIndex = 32;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = global::SIPRES.Properties.Resources.persona1;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(60, 515);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
             // 
             // TC_persona
             // 
@@ -142,6 +156,96 @@
             this.panel2.Size = new System.Drawing.Size(92, 471);
             this.panel2.TabIndex = 31;
             // 
+            // BT_pdf
+            // 
+            this.BT_pdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_pdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_pdf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_pdf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_pdf.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_pdf.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_pdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_pdf.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_pdf.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_pdf.Image = global::SIPRES.Properties.Resources.pdf;
+            this.BT_pdf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_pdf.Location = new System.Drawing.Point(2, 395);
+            this.BT_pdf.Name = "BT_pdf";
+            this.BT_pdf.Size = new System.Drawing.Size(89, 38);
+            this.BT_pdf.TabIndex = 4;
+            this.BT_pdf.Text = "PDF";
+            this.BT_pdf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_pdf.UseVisualStyleBackColor = false;
+            this.BT_pdf.Click += new System.EventHandler(this.BT_pdf_Click);
+            // 
+            // BT_nuevo_mini
+            // 
+            this.BT_nuevo_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_nuevo_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_nuevo_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_nuevo_mini.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_nuevo_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_nuevo_mini.FlatAppearance.BorderSize = 0;
+            this.BT_nuevo_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_nuevo_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_nuevo_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_nuevo_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_nuevo_mini.Image = global::SIPRES.Properties.Resources.Nuevo24;
+            this.BT_nuevo_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_nuevo_mini.Location = new System.Drawing.Point(0, 18);
+            this.BT_nuevo_mini.Name = "BT_nuevo_mini";
+            this.BT_nuevo_mini.Size = new System.Drawing.Size(91, 35);
+            this.BT_nuevo_mini.TabIndex = 2;
+            this.BT_nuevo_mini.Text = "Nuevo";
+            this.BT_nuevo_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_nuevo_mini.UseVisualStyleBackColor = false;
+            this.BT_nuevo_mini.Click += new System.EventHandler(this.BT_nuevo_mini_Click);
+            // 
+            // BT_editar_mini
+            // 
+            this.BT_editar_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_editar_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_editar_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_editar_mini.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_editar_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_editar_mini.FlatAppearance.BorderSize = 0;
+            this.BT_editar_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_editar_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_editar_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_editar_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_editar_mini.Image = global::SIPRES.Properties.Resources.Editar24;
+            this.BT_editar_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_editar_mini.Location = new System.Drawing.Point(3, 62);
+            this.BT_editar_mini.Name = "BT_editar_mini";
+            this.BT_editar_mini.Size = new System.Drawing.Size(89, 38);
+            this.BT_editar_mini.TabIndex = 3;
+            this.BT_editar_mini.Text = "Editar";
+            this.BT_editar_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_editar_mini.UseVisualStyleBackColor = false;
+            this.BT_editar_mini.Click += new System.EventHandler(this.BT_editar_mini_Click);
+            // 
+            // BT_excel
+            // 
+            this.BT_excel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_excel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_excel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_excel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_excel.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_excel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_excel.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_excel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_excel.Image = global::SIPRES.Properties.Resources.xls;
+            this.BT_excel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_excel.Location = new System.Drawing.Point(2, 351);
+            this.BT_excel.Name = "BT_excel";
+            this.BT_excel.Size = new System.Drawing.Size(89, 38);
+            this.BT_excel.TabIndex = 5;
+            this.BT_excel.Text = "Excel";
+            this.BT_excel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_excel.UseVisualStyleBackColor = false;
+            this.BT_excel.Click += new System.EventHandler(this.BT_excel_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
@@ -158,6 +262,16 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Listar personas";
+            // 
+            // BT_limpiar
+            // 
+            this.BT_limpiar.Image = global::SIPRES.Properties.Resources.limpiar24;
+            this.BT_limpiar.Location = new System.Drawing.Point(423, 24);
+            this.BT_limpiar.Name = "BT_limpiar";
+            this.BT_limpiar.Size = new System.Drawing.Size(28, 29);
+            this.BT_limpiar.TabIndex = 1;
+            this.BT_limpiar.UseVisualStyleBackColor = true;
+            this.BT_limpiar.Click += new System.EventHandler(this.BT_limpiar_Click);
             // 
             // DGV_datos
             // 
@@ -275,6 +389,25 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del  Personales";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(475, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 20);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "RTN";
+            // 
+            // TX_rtn
+            // 
+            this.TX_rtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TX_rtn.Location = new System.Drawing.Point(570, 36);
+            this.TX_rtn.Name = "TX_rtn";
+            this.TX_rtn.ReadOnly = true;
+            this.TX_rtn.Size = new System.Drawing.Size(285, 27);
+            this.TX_rtn.TabIndex = 26;
             // 
             // TX_apellido
             // 
@@ -422,6 +555,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Contacto";
             // 
+            // TX_direccion
+            // 
+            this.TX_direccion.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TX_direccion.Location = new System.Drawing.Point(139, 137);
+            this.TX_direccion.Multiline = true;
+            this.TX_direccion.Name = "TX_direccion";
+            this.TX_direccion.ReadOnly = true;
+            this.TX_direccion.Size = new System.Drawing.Size(716, 56);
+            this.TX_direccion.TabIndex = 25;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(27, 144);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 20);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Direcccion";
+            // 
             // TX_correo
             // 
             this.TX_correo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -494,145 +647,6 @@
             this.panel1.Size = new System.Drawing.Size(112, 471);
             this.panel1.TabIndex = 34;
             // 
-            // TX_rtn
-            // 
-            this.TX_rtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TX_rtn.Location = new System.Drawing.Point(570, 36);
-            this.TX_rtn.Name = "TX_rtn";
-            this.TX_rtn.ReadOnly = true;
-            this.TX_rtn.Size = new System.Drawing.Size(285, 27);
-            this.TX_rtn.TabIndex = 26;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(475, 39);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(38, 20);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "RTN";
-            // 
-            // TX_direccion
-            // 
-            this.TX_direccion.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TX_direccion.Location = new System.Drawing.Point(139, 137);
-            this.TX_direccion.Multiline = true;
-            this.TX_direccion.Name = "TX_direccion";
-            this.TX_direccion.ReadOnly = true;
-            this.TX_direccion.Size = new System.Drawing.Size(716, 56);
-            this.TX_direccion.TabIndex = 25;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(27, 144);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 20);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Direcccion";
-            // 
-            // BT_pdf
-            // 
-            this.BT_pdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_pdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_pdf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_pdf.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_pdf.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_pdf.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_pdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_pdf.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_pdf.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_pdf.Image = global::SIPRES.Properties.Resources.pdf;
-            this.BT_pdf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_pdf.Location = new System.Drawing.Point(2, 395);
-            this.BT_pdf.Name = "BT_pdf";
-            this.BT_pdf.Size = new System.Drawing.Size(89, 38);
-            this.BT_pdf.TabIndex = 4;
-            this.BT_pdf.Text = "PDF";
-            this.BT_pdf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_pdf.UseVisualStyleBackColor = false;
-            this.BT_pdf.Click += new System.EventHandler(this.BT_pdf_Click);
-            // 
-            // BT_nuevo_mini
-            // 
-            this.BT_nuevo_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_nuevo_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_nuevo_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_nuevo_mini.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_nuevo_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_nuevo_mini.FlatAppearance.BorderSize = 0;
-            this.BT_nuevo_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_nuevo_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_nuevo_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_nuevo_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_nuevo_mini.Image = global::SIPRES.Properties.Resources.Nuevo224;
-            this.BT_nuevo_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_nuevo_mini.Location = new System.Drawing.Point(0, 18);
-            this.BT_nuevo_mini.Name = "BT_nuevo_mini";
-            this.BT_nuevo_mini.Size = new System.Drawing.Size(91, 35);
-            this.BT_nuevo_mini.TabIndex = 2;
-            this.BT_nuevo_mini.Text = "Nuevo";
-            this.BT_nuevo_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_nuevo_mini.UseVisualStyleBackColor = false;
-            this.BT_nuevo_mini.Click += new System.EventHandler(this.BT_nuevo_mini_Click);
-            // 
-            // BT_editar_mini
-            // 
-            this.BT_editar_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_editar_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_editar_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_editar_mini.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_editar_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_editar_mini.FlatAppearance.BorderSize = 0;
-            this.BT_editar_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_editar_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_editar_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_editar_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_editar_mini.Image = global::SIPRES.Properties.Resources.Editar_24;
-            this.BT_editar_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_editar_mini.Location = new System.Drawing.Point(3, 62);
-            this.BT_editar_mini.Name = "BT_editar_mini";
-            this.BT_editar_mini.Size = new System.Drawing.Size(89, 38);
-            this.BT_editar_mini.TabIndex = 3;
-            this.BT_editar_mini.Text = "Editar";
-            this.BT_editar_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_editar_mini.UseVisualStyleBackColor = false;
-            this.BT_editar_mini.Click += new System.EventHandler(this.BT_editar_mini_Click);
-            // 
-            // BT_excel
-            // 
-            this.BT_excel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_excel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_excel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_excel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_excel.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_excel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_excel.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_excel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_excel.Image = global::SIPRES.Properties.Resources.xls;
-            this.BT_excel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_excel.Location = new System.Drawing.Point(2, 351);
-            this.BT_excel.Name = "BT_excel";
-            this.BT_excel.Size = new System.Drawing.Size(89, 38);
-            this.BT_excel.TabIndex = 5;
-            this.BT_excel.Text = "Excel";
-            this.BT_excel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_excel.UseVisualStyleBackColor = false;
-            this.BT_excel.Click += new System.EventHandler(this.BT_excel_Click);
-            // 
-            // BT_limpiar
-            // 
-            this.BT_limpiar.Image = global::SIPRES.Properties.Resources.limpiar24;
-            this.BT_limpiar.Location = new System.Drawing.Point(423, 24);
-            this.BT_limpiar.Name = "BT_limpiar";
-            this.BT_limpiar.Size = new System.Drawing.Size(28, 29);
-            this.BT_limpiar.TabIndex = 1;
-            this.BT_limpiar.UseVisualStyleBackColor = true;
-            this.BT_limpiar.Click += new System.EventHandler(this.BT_limpiar_Click);
-            // 
             // BT_cancelar
             // 
             this.BT_cancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -647,7 +661,7 @@
             this.BT_cancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BT_cancelar.Image = global::SIPRES.Properties.Resources.Cacelar24;
             this.BT_cancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_cancelar.Location = new System.Drawing.Point(1, 425);
+            this.BT_cancelar.Location = new System.Drawing.Point(1, 408);
             this.BT_cancelar.Name = "BT_cancelar";
             this.BT_cancelar.Size = new System.Drawing.Size(112, 38);
             this.BT_cancelar.TabIndex = 17;
@@ -672,7 +686,7 @@
             this.BT_editar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BT_editar.Image = global::SIPRES.Properties.Resources.Editar24;
             this.BT_editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_editar.Location = new System.Drawing.Point(3, 343);
+            this.BT_editar.Location = new System.Drawing.Point(3, 326);
             this.BT_editar.Name = "BT_editar";
             this.BT_editar.Size = new System.Drawing.Size(109, 38);
             this.BT_editar.TabIndex = 18;
@@ -696,7 +710,7 @@
             this.BT_guardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BT_guardar.Image = global::SIPRES.Properties.Resources.Aplicar224;
             this.BT_guardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_guardar.Location = new System.Drawing.Point(3, 384);
+            this.BT_guardar.Location = new System.Drawing.Point(3, 367);
             this.BT_guardar.Name = "BT_guardar";
             this.BT_guardar.Size = new System.Drawing.Size(109, 38);
             this.BT_guardar.TabIndex = 16;
@@ -719,7 +733,7 @@
             this.BT_nuevo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BT_nuevo.Image = global::SIPRES.Properties.Resources.Nuevo24;
             this.BT_nuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_nuevo.Location = new System.Drawing.Point(4, 302);
+            this.BT_nuevo.Location = new System.Drawing.Point(4, 285);
             this.BT_nuevo.Name = "BT_nuevo";
             this.BT_nuevo.Size = new System.Drawing.Size(107, 38);
             this.BT_nuevo.TabIndex = 7;
@@ -728,29 +742,36 @@
             this.BT_nuevo.UseVisualStyleBackColor = false;
             this.BT_nuevo.Click += new System.EventHandler(this.BT_nuevo_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = global::SIPRES.Properties.Resources.persona1;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(60, 515);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 30;
-            this.pictureBox1.TabStop = false;
-            // 
             // SFD_excel
             // 
             this.SFD_excel.Filter = "\"Archivo CSV|*.csv\"";
-            this.SFD_excel.InitialDirectory = "C:\\Sificop\\Reportes\\Excel";
+            this.SFD_excel.InitialDirectory = "C:\\Sipres\\Reportes\\Excel";
             // 
             // SFD_pdf
             // 
             this.SFD_pdf.FileName = ".pdf";
             this.SFD_pdf.Filter = "\"Archivo PDF|*.pdf\"";
-            this.SFD_pdf.InitialDirectory = "C:\\Sificop\\Reportes\\PDF";
+            this.SFD_pdf.InitialDirectory = "C:\\Sipres\\Reportes\\PDF";
             this.SFD_pdf.Title = "Exportar a PDF";
+            // 
+            // BT_salir
+            // 
+            this.BT_salir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_salir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_salir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_salir.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_salir.FlatAppearance.BorderSize = 0;
+            this.BT_salir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_salir.Font = new System.Drawing.Font("Poppins Medium", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_salir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_salir.Location = new System.Drawing.Point(13, 12);
+            this.BT_salir.Name = "BT_salir";
+            this.BT_salir.Size = new System.Drawing.Size(40, 44);
+            this.BT_salir.TabIndex = 34;
+            this.BT_salir.Text = "X";
+            this.BT_salir.UseVisualStyleBackColor = false;
+            this.BT_salir.Click += new System.EventHandler(this.BT_salir_Click);
             // 
             // persona
             // 
@@ -765,6 +786,7 @@
             this.Text = "Persona";
             this.Load += new System.EventHandler(this.Persona_Load);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.TC_persona.ResumeLayout(false);
             this.TP_listar.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -777,7 +799,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -830,5 +851,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.SaveFileDialog SFD_excel;
         private System.Windows.Forms.SaveFileDialog SFD_pdf;
+        private System.Windows.Forms.Button BT_salir;
     }
 }

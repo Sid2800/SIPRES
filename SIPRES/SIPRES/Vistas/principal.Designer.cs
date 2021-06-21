@@ -38,7 +38,6 @@
             this.BT_cliente = new System.Windows.Forms.Button();
             this.P_formulario = new System.Windows.Forms.Panel();
             this.PB_logo2 = new System.Windows.Forms.PictureBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Barra_estado = new System.Windows.Forms.StatusStrip();
             this.activo = new System.Windows.Forms.ToolStripStatusLabel();
             this.rol = new System.Windows.Forms.ToolStripStatusLabel();
@@ -58,7 +57,7 @@
             this.panel1.Controls.Add(this.BT_producto);
             this.panel1.Controls.Add(this.BT_cliente);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1108, 58);
             this.panel1.TabIndex = 0;
@@ -151,7 +150,7 @@
             this.BT_usuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BT_usuario.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BT_usuario.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_usuario.Image = global::SIPRES.Properties.Resources.usuario;
+            this.BT_usuario.Image = global::SIPRES.Properties.Resources.usuario_bt;
             this.BT_usuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BT_usuario.Location = new System.Drawing.Point(162, 4);
             this.BT_usuario.Name = "BT_usuario";
@@ -160,6 +159,7 @@
             this.BT_usuario.Text = "Usuario";
             this.BT_usuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BT_usuario.UseVisualStyleBackColor = false;
+            this.BT_usuario.Click += new System.EventHandler(this.BT_usuario_Click);
             // 
             // BT_producto
             // 
@@ -205,18 +205,19 @@
             this.BT_cliente.Name = "BT_cliente";
             this.BT_cliente.Size = new System.Drawing.Size(151, 50);
             this.BT_cliente.TabIndex = 43;
-            this.BT_cliente.Text = "Cliente";
+            this.BT_cliente.Text = "Empresa";
             this.BT_cliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BT_cliente.UseVisualStyleBackColor = false;
+            this.BT_cliente.Click += new System.EventHandler(this.BT_cliente_Click);
             // 
             // P_formulario
             // 
             this.P_formulario.BackColor = System.Drawing.Color.Transparent;
             this.P_formulario.Controls.Add(this.PB_logo2);
             this.P_formulario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.P_formulario.Location = new System.Drawing.Point(0, 82);
+            this.P_formulario.Location = new System.Drawing.Point(0, 58);
             this.P_formulario.Name = "P_formulario";
-            this.P_formulario.Size = new System.Drawing.Size(1108, 584);
+            this.P_formulario.Size = new System.Drawing.Size(1108, 608);
             this.P_formulario.TabIndex = 3;
             // 
             // PB_logo2
@@ -225,18 +226,10 @@
             this.PB_logo2.Image = ((System.Drawing.Image)(resources.GetObject("PB_logo2.Image")));
             this.PB_logo2.Location = new System.Drawing.Point(0, 0);
             this.PB_logo2.Name = "PB_logo2";
-            this.PB_logo2.Size = new System.Drawing.Size(1108, 584);
+            this.PB_logo2.Size = new System.Drawing.Size(1108, 608);
             this.PB_logo2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.PB_logo2.TabIndex = 1;
             this.PB_logo2.TabStop = false;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1108, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // Barra_estado
             // 
@@ -281,10 +274,10 @@
             this.Controls.Add(this.Barra_estado);
             this.Controls.Add(this.P_formulario);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Presupuestario";
             this.panel1.ResumeLayout(false);
             this.P_formulario.ResumeLayout(false);
@@ -306,7 +299,6 @@
         private System.Windows.Forms.Button BT_producto;
         private System.Windows.Forms.Button BT_cliente;
         private System.Windows.Forms.Panel P_formulario;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.StatusStrip Barra_estado;
         private System.Windows.Forms.ToolStripStatusLabel activo;
         private System.Windows.Forms.ToolStripStatusLabel rol;

@@ -22,39 +22,13 @@ namespace SIPRES.Vistas
         public persona()
         {
             InitializeComponent();
-        }           
-
-        private void Persona_Load(object sender, EventArgs e)
-        {
-            Cargar_grid();
         }
-
-        void Cargar_grid()
-        {
-            control.Listar_persona();
-            this.DGV_datos.DataSource = Persona_modelo.Datos;
-
-        }
-
-        void Filtrar_datos()
-        {
-            if (Persona_modelo.Datos != null)
-            {
-                Persona_modelo.Datos.DefaultView.RowFilter =
-                $"identidad + nombre + apellido like'%" +
-                TX_buscar.Text + "%'";
-            }
-        }
-
-        private void TX_buscar_TextChanged(object sender, EventArgs e)
-        {
-            Filtrar_datos();
-        }
-
+        
         Boolean LLenos()
         {
             Boolean lleno;
             if (TX_identidad.MaskCompleted == false
+                || string.IsNullOrEmpty(TX_rtn.Text)
                 || string.IsNullOrEmpty(TX_nombre.Text)
                 || string.IsNullOrEmpty(TX_rtn.Text)
                 || string.IsNullOrEmpty(TX_apellido.Text)
@@ -62,6 +36,8 @@ namespace SIPRES.Vistas
                 || string.IsNullOrEmpty(TX_tell_cell.Text)
                 || string.IsNullOrEmpty(TX_tel_fijo.Text)
                 || string.IsNullOrEmpty(TX_tell_cell.Text)
+                || string.IsNullOrEmpty(TX_direccion.Text)
+
                 )
             { lleno = false; }
             else { lleno = true; }
@@ -85,6 +61,30 @@ namespace SIPRES.Vistas
             this.TX_correo.Clear();
             this.TX_direccion.Clear();
 
+        }
+                
+        #region Metodos de Carga
+
+        private void Persona_Load(object sender, EventArgs e)
+        {
+            Cargar_grid();
+        }
+        
+        void Cargar_grid()
+        {
+            control.Listar_persona();
+            this.DGV_datos.DataSource = Persona_modelo.Datos;
+
+        }
+
+        void Filtrar_datos()
+        {
+            if (Persona_modelo.Datos != null)
+            {
+                Persona_modelo.Datos.DefaultView.RowFilter =
+                $"identidad + nombre + apellido like'%" +
+                TX_buscar.Text + "%'";
+            }
         }
 
         void Modo(string M)
@@ -179,7 +179,7 @@ namespace SIPRES.Vistas
                 TX_tell_cell.Text = Var.Tel_cell;
                 TX_tel_fijo.Text = Var.Tel_fijo;
                 TX_correo.Text = Var.Correo;
-                TX_direccion.Text = Var.Correo;
+                TX_direccion.Text = Var.Direccion;
 
             }
             else
@@ -191,7 +191,6 @@ namespace SIPRES.Vistas
 
         Persona_modelo Agregar_persona()
         {
-            
             personanew.Identidad = this.TX_identidad.Text;
             personanew.Rtn = this.TX_rtn.Text;
             personanew.Nombre = this.TX_nombre.Text;
@@ -201,17 +200,68 @@ namespace SIPRES.Vistas
             personanew.Tel_cell = this.TX_tell_cell.Text;
             personanew.Tel_fijo = this.TX_tel_fijo.Text;
             personanew.Correo = this.TX_correo.Text;
-            personanew.Direccion = this.TX_correo.Text;
-
+            personanew.Direccion = this.TX_direccion.Text;
             return personanew;
+        }
+
+
+        #endregion
+
+
+        #region Metodos con Objetos
+
+        private void TX_buscar_TextChanged(object sender, EventArgs e)
+        {
+            Filtrar_datos();
         }
 
         private void BT_limpiar_Click(object sender, EventArgs e)
         {
             TX_buscar.Clear();
             TX_buscar.Focus();
-        }     
+        }
 
+        private void DT_nacimiento_ValueChanged(object sender, EventArgs e)
+        {
+            var timeSpan = DateTime.Now - DT_nacimiento.Value;
+            int anios = (timeSpan.Days / 365);
+            TX_edad.Text = anios.ToString() + " Años";
+        }
+
+        private void TC_persona_Selected(object sender, TabControlEventArgs e)
+        {
+            Modo("C");
+            if (TX_identidad.MaskCompleted)
+            {
+                Modo_consulta(TX_identidad.Text.ToString());
+            }
+            else
+            {
+                BT_editar.Enabled = false;
+                Limpiar();
+            }
+        }
+
+        private void DGV_datos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (string.IsNullOrEmpty(DGV_datos.SelectedCells[0].Value.ToString()))
+            {
+
+            }
+            else
+            {
+                Limpiar();
+                Modo_consulta(DGV_datos.SelectedCells[0].Value.ToString());
+                TC_persona.SelectedTab = TP_administrar;
+                Modo("c");
+            }
+        }
+
+        #endregion
+
+
+        #region Metodos de Botones
+        
         private void BT_pdf_Click(object sender, EventArgs e)
         {
             string fecha = DateTime.Now.ToShortDateString();
@@ -227,19 +277,17 @@ namespace SIPRES.Vistas
             }
         }
 
-        private void BT_excel_Click(object sender, EventArgs e)
+        private void BT_excel_Click(object sender, EventArgs e) 
         {
             string fecha = DateTime.Now.ToShortDateString();
             string fechaarch = fecha.Replace('/', '_');
 
             SFD_excel.FileName = "Listado_Personas" + fechaarch + ".csv";
-
-
+            
             if (SFD_excel.ShowDialog() == DialogResult.OK)
             {
                 string archivo = SFD_excel.FileName;
                 reporte.A_excel(DGV_datos, archivo);
-
             }
         }
 
@@ -248,14 +296,7 @@ namespace SIPRES.Vistas
             Limpiar();
             Modo("A");
         }
-
-        private void DT_nacimiento_ValueChanged(object sender, EventArgs e)
-        {
-            var timeSpan = DateTime.Now - DT_nacimiento.Value;
-            int anios = (timeSpan.Days / 365);
-            TX_edad.Text = anios.ToString() + " Años";
-        }
-
+                
         private void BT_cancelar_Click(object sender, EventArgs e)
         {
             Modo("C");
@@ -326,23 +367,8 @@ namespace SIPRES.Vistas
 
             }
         }
-
-        private void TC_persona_Selected(object sender, TabControlEventArgs e)
-        {
-            Modo("C");
-            if (TX_identidad.MaskCompleted)
-            {
-                Modo_consulta(TX_identidad.Text.ToString());
-            }
-            else
-            {
-                BT_editar.Enabled = false;
-                Limpiar();
-            }
-        }
-
+               
         private void BT_nuevo_mini_Click(object sender, EventArgs e)
-
         {
             TC_persona.SelectedTab = TP_administrar;
             Limpiar();
@@ -363,19 +389,21 @@ namespace SIPRES.Vistas
             if (LLenos()) { Modo("E"); }
         }
 
-        private void DGV_datos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (string.IsNullOrEmpty(DGV_datos.SelectedCells[0].Value.ToString()))
-            {
 
-            }
-            else
-            {
-                Limpiar();
-                Modo_consulta(DGV_datos.SelectedCells[0].Value.ToString());
-                TC_persona.SelectedTab = TP_administrar;
-                Modo("c");
-            }
+
+
+
+
+
+
+
+
+
+        #endregion
+
+        private void BT_salir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

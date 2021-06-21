@@ -14,3 +14,5 @@ C:\Sipres\SIPRES\SIPRES\bin\Debug\BouncyCastle.Crypto.dll
 C:\Sipres\SIPRES\SIPRES\bin\Debug\itextsharp.dll
 C:\Sipres\SIPRES\SIPRES\bin\Debug\itextsharp.xml
 C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.csproj.CopyComplete
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.usuario.resources
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.empresa.resources

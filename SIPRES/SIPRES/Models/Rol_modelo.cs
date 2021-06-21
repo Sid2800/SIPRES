@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace SIPRES.Models
 
         /// Metodos para uso para procesos del sistema
         public static Boolean Existe { get; set; } // metodo
+
+        public static DataTable Datos { get; set; } // metodo
 
     }
 }

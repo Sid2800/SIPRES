@@ -119,5 +119,15 @@ namespace SIPRES.Vistas
         {
             Abrir_formulario<persona>();
         }
+
+        private void BT_usuario_Click(object sender, EventArgs e)
+        {
+            Abrir_formulario<usuario>();
+        }
+
+        private void BT_cliente_Click(object sender, EventArgs e)
+        {
+            Abrir_formulario<empresa>();
+        }
     }
 }
