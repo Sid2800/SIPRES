@@ -56,11 +56,13 @@
     <Compile Include="Controles\Conexion.cs" />
     <Compile Include="Controles\Control_empresa.cs" />
     <Compile Include="Controles\Control_persona.cs" />
+    <Compile Include="Controles\Control_producto.cs" />
     <Compile Include="Controles\Control_rol.cs" />
     <Compile Include="Controles\Control_usuario.cs" />
     <Compile Include="Controles\Reporte.cs" />
     <Compile Include="Models\Empresa_modelo.cs" />
     <Compile Include="Models\Persona_modelo.cs" />
+    <Compile Include="Models\Producto_modelo.cs" />
     <Compile Include="Models\Rol_modelo.cs" />
     <Compile Include="Models\Usuario_modelo.cs" />
     <Compile Include="Program.cs" />
@@ -94,6 +96,12 @@
     <Compile Include="Vistas\principal.Designer.cs">
       <DependentUpon>principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\producto.Designer.cs">
+      <DependentUpon>producto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\usuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\principal.resx">
       <DependentUpon>principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\producto.resx">
+      <DependentUpon>producto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\usuario.resx">
       <DependentUpon>usuario.cs</DependentUpon>
@@ -235,6 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\empresa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\productor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
