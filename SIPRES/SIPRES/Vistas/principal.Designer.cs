@@ -59,7 +59,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1108, 58);
+            this.panel1.Size = new System.Drawing.Size(1094, 58);
             this.panel1.TabIndex = 0;
             // 
             // BT_salir
@@ -78,7 +78,7 @@
             this.BT_salir.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BT_salir.Image = global::SIPRES.Properties.Resources.salir;
             this.BT_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_salir.Location = new System.Drawing.Point(993, 0);
+            this.BT_salir.Location = new System.Drawing.Point(979, 0);
             this.BT_salir.Name = "BT_salir";
             this.BT_salir.Size = new System.Drawing.Size(115, 58);
             this.BT_salir.TabIndex = 47;
@@ -135,6 +135,7 @@
             this.BT_proyecto.Text = "Proyecto";
             this.BT_proyecto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BT_proyecto.UseVisualStyleBackColor = false;
+            this.BT_proyecto.Click += new System.EventHandler(this.BT_proyecto_Click);
             // 
             // BT_usuario
             // 
@@ -217,7 +218,7 @@
             this.P_formulario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.P_formulario.Location = new System.Drawing.Point(0, 58);
             this.P_formulario.Name = "P_formulario";
-            this.P_formulario.Size = new System.Drawing.Size(1108, 608);
+            this.P_formulario.Size = new System.Drawing.Size(1094, 523);
             this.P_formulario.TabIndex = 3;
             // 
             // PB_logo2
@@ -226,7 +227,7 @@
             this.PB_logo2.Image = ((System.Drawing.Image)(resources.GetObject("PB_logo2.Image")));
             this.PB_logo2.Location = new System.Drawing.Point(0, 0);
             this.PB_logo2.Name = "PB_logo2";
-            this.PB_logo2.Size = new System.Drawing.Size(1108, 608);
+            this.PB_logo2.Size = new System.Drawing.Size(1094, 523);
             this.PB_logo2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.PB_logo2.TabIndex = 1;
             this.PB_logo2.TabStop = false;
@@ -240,10 +241,10 @@
             this.activo,
             this.rol});
             this.Barra_estado.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.Barra_estado.Location = new System.Drawing.Point(0, 635);
+            this.Barra_estado.Location = new System.Drawing.Point(0, 550);
             this.Barra_estado.Name = "Barra_estado";
             this.Barra_estado.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.Barra_estado.Size = new System.Drawing.Size(1108, 31);
+            this.Barra_estado.Size = new System.Drawing.Size(1094, 31);
             this.Barra_estado.TabIndex = 5;
             this.Barra_estado.Text = "statusStrip1";
             // 
@@ -270,7 +271,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(35)))), ((int)(((byte)(45)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1108, 666);
+            this.ClientSize = new System.Drawing.Size(1094, 581);
             this.Controls.Add(this.Barra_estado);
             this.Controls.Add(this.P_formulario);
             this.Controls.Add(this.panel1);

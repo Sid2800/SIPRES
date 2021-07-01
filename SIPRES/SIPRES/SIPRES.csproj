@@ -54,15 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controles\Conexion.cs" />
+    <Compile Include="Controles\Control_detalle.cs" />
     <Compile Include="Controles\Control_empresa.cs" />
     <Compile Include="Controles\Control_persona.cs" />
     <Compile Include="Controles\Control_producto.cs" />
+    <Compile Include="Controles\Control_proyecto.cs" />
     <Compile Include="Controles\Control_rol.cs" />
     <Compile Include="Controles\Control_usuario.cs" />
     <Compile Include="Controles\Reporte.cs" />
+    <Compile Include="Models\Detalle_modelo.cs" />
     <Compile Include="Models\Empresa_modelo.cs" />
     <Compile Include="Models\Persona_modelo.cs" />
     <Compile Include="Models\Producto_modelo.cs" />
+    <Compile Include="Models\Proyecto_modelo.cs" />
     <Compile Include="Models\Rol_modelo.cs" />
     <Compile Include="Models\Usuario_modelo.cs" />
     <Compile Include="Program.cs" />
@@ -71,6 +75,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Detalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Detalle.Designer.cs">
+      <DependentUpon>Detalle.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\empresa.cs">
       <SubType>Form</SubType>
@@ -102,6 +112,12 @@
     <Compile Include="Vistas\producto.Designer.cs">
       <DependentUpon>producto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\proyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\proyecto.Designer.cs">
+      <DependentUpon>proyecto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\usuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +128,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Detalle.resx">
+      <DependentUpon>Detalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\empresa.resx">
       <DependentUpon>empresa.cs</DependentUpon>
@@ -127,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\producto.resx">
       <DependentUpon>producto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\proyecto.resx">
+      <DependentUpon>proyecto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\usuario.resx">
       <DependentUpon>usuario.cs</DependentUpon>
@@ -249,6 +271,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\productor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\proyecto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ver1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

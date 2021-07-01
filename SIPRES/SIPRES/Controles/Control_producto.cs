@@ -57,14 +57,13 @@ namespace SIPRES.Controles
                             {
 
                                 producto.Id_pro = LeerDatos.GetString(0);
-                                producto.Nombre = LeerDatos.GetString(1);
-                                producto.Descrip = LeerDatos.GetString(2);
-                                producto.Uni_med = LeerDatos.GetString(3);
-                                producto.Precio = LeerDatos.GetDecimal(4);
-                               producto.Id_tipo_pro = LeerDatos.GetString(5);
+                                producto.Nombre = LeerDatos.GetString(1);                         
+                                producto.Uni_med = LeerDatos.GetString(2);
+                                producto.Precio = LeerDatos.GetFloat(3);
+                                producto.Id_tipo_pro = LeerDatos.GetInt32(4);
                            
 
-                                Persona_modelo.Existe = true;
+                               Producto_modelo.Existe = true;
 
                             }
                         }
