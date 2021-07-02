@@ -190,5 +190,206 @@ namespace SIPRES.Controles
 
         }
 
+
+        public void Presupuesto(string directorio, Comprobante_modelo comprobante)
+        {
+
+
+            try
+            {
+                Document PDF = new Document(PageSize.A6);
+                string fecha = DateTime.Now.ToShortDateString();
+
+                PdfWriter escritura = PdfWriter.GetInstance(PDF, new FileStream(directorio, FileMode.Create));
+
+                // Metadatos
+                PDF.AddTitle("COMPROBANTE DE TRANSSACCION");
+                PDF.AddCreator("SIFICOP");
+                PDF.Open();
+
+                #region Datos del Cajero
+                PdfPTable tabla = new PdfPTable(2);
+                tabla.DefaultCell.Padding = 3;
+
+                tabla.WidthPercentage = 100;
+                tabla.DefaultCell.BorderWidth = 0.0f;
+                tabla.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                tabla.AddCell(new Phrase("CAJERO ID", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla.AddCell(new Phrase(comprobante.ID_usuario, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla.CompleteRow();
+
+                tabla.AddCell(new Phrase("CAJERO NOMBRE", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla.AddCell(new Phrase(comprobante.Nombre_usuario, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+
+                tabla.CompleteRow();
+                #endregion
+
+                #region Datos de la tran
+                PdfPTable tabla_t = new PdfPTable(2);
+                tabla_t.DefaultCell.Padding = 3;
+
+                tabla_t.WidthPercentage = 100;
+                tabla_t.DefaultCell.BorderWidth = 0.0f;
+                tabla_t.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                tabla_t.AddCell(new Phrase("# TRANSACCION", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.N_transaccion.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("FECHA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.Fecha_trans.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("DESCRIPCION", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.Descripcion, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("MONTO", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.Monto.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("# CUENTA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.N_cuenta.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("TIPO CUENTA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.T_cuenta, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("AFILIADO", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.Nombre, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+
+                tabla_t.AddCell(new Phrase("IDENTIDAD", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_t.AddCell(new Phrase(comprobante.Identidad, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_t.CompleteRow();
+                #endregion
+
+                #region Datos de la Procedencia
+                PdfPTable tabla_p = new PdfPTable(2);
+                tabla_p.DefaultCell.Padding = 3;
+
+                tabla_p.WidthPercentage = 100;
+                tabla_p.DefaultCell.BorderWidth = 0.0f;
+                tabla_p.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                tabla_p.AddCell(new Phrase("PROCEDENCIA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_p.AddCell(new Phrase(comprobante.Procedencia, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_p.CompleteRow();
+
+                tabla_p.AddCell(new Phrase("# CUENTA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_p.AddCell(new Phrase(comprobante.N_cuenta_procedencia.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_p.CompleteRow();
+
+                tabla_p.AddCell(new Phrase("NOMBRE ", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
+                tabla_p.AddCell(new Phrase(comprobante.Nombre_p, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla_p.CompleteRow();
+
+
+
+                #endregion
+
+
+                // Creando el titulo
+
+                Paragraph Titulo = new Paragraph("Sistema Financiero Cooperativista ",
+                    FontFactory.GetFont("ARIAL", 11, iTextSharp.text.Font.BOLD))
+                {
+                    Alignment = Element.ALIGN_RIGHT
+                };
+
+
+                // Creando Mensaje de Despedida
+                Paragraph Ultimalinea = new Paragraph("::::::::::::::::::::::::::::: Fin del reporte :::::::::::::::::::::::::::::",
+                    FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.ITALIC))
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+
+
+                // Linea Separadora
+                Paragraph separador = new Paragraph("---------------------------------------------------------------",
+                    FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL))
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+
+                // Linea Firma
+                Paragraph firma = new Paragraph("Firma ___________________________________",
+                    FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL))
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+
+                // Fecha de creacion del Reporte
+
+                Paragraph FechaReporte = new Paragraph("Fecha Creacion: " + fecha,
+                    FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.ITALIC))
+                {
+                    Alignment = Element.ANNOTATION
+
+                };
+
+
+
+                iTextSharp.text.Image Logo = iTextSharp.text.Image.GetInstance(Properties.Resources.Logo_sinletras,
+                    System.Drawing.Imaging.ImageFormat.Png);
+
+                Logo.ScaleAbsoluteWidth(48);
+                Logo.ScaleAbsoluteHeight(48);
+                Logo.SetAbsolutePosition(PDF.PageSize.Width - 36f - 250f, PDF.PageSize.Height - 36f - 30f);
+
+                iTextSharp.text.Image Sificcop = iTextSharp.text.Image.GetInstance(Properties.Resources.sificoop,
+                   System.Drawing.Imaging.ImageFormat.Png);
+
+
+
+
+
+                // Agreganndo los objetos Creados a Reporte
+                PDF.Add(Logo);
+
+                PDF.Add(Titulo);
+                PDF.Add(Chunk.NEWLINE);
+
+                PDF.Add(tabla);
+                PDF.Add(separador);
+                PDF.Add(tabla_t);
+                PDF.Add(separador);
+                PDF.Add(tabla_p);
+                PDF.Add(separador);
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(Chunk.NEWLINE);
+
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(firma);
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(Chunk.NEWLINE);
+
+                PDF.Add(Ultimalinea);
+
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(FechaReporte);
+
+                // const alto = () => MessageBox.Show("Gato con botas");
+
+                // Ultimas inteacciones con el reporte, cerramos la edicion; y iniciamos el archivo
+                PDF.Close();
+                Process.Start(directorio);
+
+            }
+            catch (Exception error)//( error)
+            {
+                MessageBox.Show(error.Message, "Error en el proceso");
+            }
+
+
+        }
+
+
     }
 }

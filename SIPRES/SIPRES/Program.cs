@@ -17,7 +17,7 @@ namespace SIPRES
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new proyecto());
+            Application.Run(new login());
         }
     }
 }

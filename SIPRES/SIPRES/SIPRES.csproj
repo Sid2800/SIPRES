@@ -65,6 +65,7 @@
     <Compile Include="Models\Detalle_modelo.cs" />
     <Compile Include="Models\Empresa_modelo.cs" />
     <Compile Include="Models\Persona_modelo.cs" />
+    <Compile Include="Models\Prespuesto_modelo.cs" />
     <Compile Include="Models\Producto_modelo.cs" />
     <Compile Include="Models\Proyecto_modelo.cs" />
     <Compile Include="Models\Rol_modelo.cs" />
@@ -277,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ver1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eliminar24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

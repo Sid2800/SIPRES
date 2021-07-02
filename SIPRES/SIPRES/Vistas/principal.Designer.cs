@@ -185,6 +185,7 @@
             this.BT_producto.Text = "Producto";
             this.BT_producto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BT_producto.UseVisualStyleBackColor = false;
+            this.BT_producto.Click += new System.EventHandler(this.BT_producto_Click);
             // 
             // BT_cliente
             // 

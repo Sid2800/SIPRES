@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detalle));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TX_precio = new System.Windows.Forms.MaskedTextBox();
             this.TX_unidad = new System.Windows.Forms.MaskedTextBox();
             this.TX_total = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.BT_cancelar = new System.Windows.Forms.Button();
             this.Bt_aseptar = new System.Windows.Forms.Button();
-            this.TX_precio = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,15 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del  Producto";
+            // 
+            // TX_precio
+            // 
+            this.TX_precio.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TX_precio.Location = new System.Drawing.Point(113, 166);
+            this.TX_precio.Name = "TX_precio";
+            this.TX_precio.ReadOnly = true;
+            this.TX_precio.Size = new System.Drawing.Size(101, 27);
+            this.TX_precio.TabIndex = 43;
             // 
             // TX_unidad
             // 
@@ -242,15 +251,7 @@
             this.Bt_aseptar.Text = "Aceptar";
             this.Bt_aseptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Bt_aseptar.UseVisualStyleBackColor = false;
-            // 
-            // TX_precio
-            // 
-            this.TX_precio.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TX_precio.Location = new System.Drawing.Point(113, 166);
-            this.TX_precio.Name = "TX_precio";
-            this.TX_precio.ReadOnly = true;
-            this.TX_precio.Size = new System.Drawing.Size(101, 27);
-            this.TX_precio.TabIndex = 43;
+            this.Bt_aseptar.Click += new System.EventHandler(this.Bt_aseptar_Click);
             // 
             // Detalle
             // 
@@ -259,6 +260,7 @@
             this.ClientSize = new System.Drawing.Size(472, 301);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Detalle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

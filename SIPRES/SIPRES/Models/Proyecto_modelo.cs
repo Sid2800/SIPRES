@@ -23,7 +23,8 @@ namespace SIPRES.Models
 
         public string Tipo { get; set; }
 
-        
+        public float Total { get; set; }
+
 
         public DateTime Fecha_ini { get; set; }
 
@@ -34,6 +35,8 @@ namespace SIPRES.Models
         public static DataTable Datos { get; set; } // metodo
 
         public static DataTable Ntotal { get; set; } // metodo
+
+        public static DataTable Ultimo { get; set; } // metodo
 
         public static Boolean Existe { get; set; } // metodo
 

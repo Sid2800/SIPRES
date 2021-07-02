@@ -14,8 +14,8 @@ namespace SIPRES.Vistas
 {
     public partial class proyecto : Form
     {
-         
         Control_proyecto control = new Control_proyecto();
+        Control_detalle crt_detalle = new Control_detalle();
         Proyecto_modelo proyectonew = new Proyecto_modelo();
         Reporte reporte = new Reporte();
 
@@ -28,11 +28,11 @@ namespace SIPRES.Vistas
         {
             Boolean lleno;
             if (string.IsNullOrEmpty(TX_nombre.Text)
-                || string.IsNullOrEmpty(TX_id_proy.Text)
                 || string.IsNullOrEmpty(TX_identidad.Text)
                 || string.IsNullOrEmpty(TX_nombre_p.Text)
                 || string.IsNullOrEmpty(TX_estado.Text)
                 || string.IsNullOrEmpty(TX_descripion.Text)
+                || DGV_detalle.Rows.Count < 1
                 )
             { lleno = false; }
             else { lleno = true; }
@@ -52,6 +52,12 @@ namespace SIPRES.Vistas
             this.TX_linea.Clear();
             this.RB_per.Checked = true;
             this.DGV_detalle.Columns.Clear();
+            if (Detalle_modelo.Datos!=null)
+            {
+                Detalle_modelo.Datos.Columns.Clear();
+                Detalle_modelo.Datos = null;
+            }
+                                             
 
         }
 
@@ -120,10 +126,9 @@ namespace SIPRES.Vistas
 
                     // Deatalle Botones
 
-                    BT_nuevo_d.Enabled = false;
-                    BT_editar_d.Enabled = false;
+                    BT_nuevo_d.Enabled = false;                 
                     BT_eliminar_d.Enabled = false;
-                    BT_editar_d.Enabled = false;
+                   
                   
 
                     // Botones
@@ -138,8 +143,8 @@ namespace SIPRES.Vistas
 
                     //Controles
                     TX_nombre.Enabled = true;                                     
-                    RB_per.Enabled = true;
-                    RB_emp.Enabled = true;
+                    //RB_per.Enabled = true;
+                   // RB_emp.Enabled = true;
                     TX_identidad.Enabled = true;
                     TX_descripion.Enabled = true;
                     DT_inicio.Enabled = true;
@@ -149,10 +154,9 @@ namespace SIPRES.Vistas
 
                     // Deatalle Botones
 
-                    BT_nuevo_d.Enabled = true;
-                    BT_editar_d.Enabled = true;
+                    BT_nuevo_d.Enabled = true;                   
                     BT_eliminar_d.Enabled = true;
-                    BT_editar_d.Enabled = true;
+                    
                   
                     // Botones
                     BT_editar.Enabled = false;
@@ -175,10 +179,9 @@ namespace SIPRES.Vistas
 
                     // Deatalle Botones
 
-                    BT_nuevo_d.Enabled = true;
-                    BT_editar_d.Enabled = true;// ojo validacion
+                    BT_nuevo_d.Enabled = true;                  
                     BT_eliminar_d.Enabled = true;// ojo validacion
-                    BT_editar_d.Enabled = true;
+                
                  
 
                     // Botones
@@ -199,16 +202,12 @@ namespace SIPRES.Vistas
         {
             Proyecto_modelo proyecto;
             //Detalle_modelo detalle;
-            Control_detalle control_d = new Control_detalle();
+            
             proyecto = new Control_proyecto().Consultar_proyecto(codigo,mod);
             if (Proyecto_modelo.Existe)
             {
                 // Cargar Detalle
-                control_d.Listar_detalle("SELECT  producto.id_pro as Codigo, producto.nombre as Articulo, producto.uni_med as Medida," +
-                " producto.precio as Precio, detalle.cantidad as Cantidad, detalle.total as Total " +
-                " FROM proyecto INNER JOIN detalle On(proyecto.id_proy = detalle.id_proy)  " +
-                $" INNER JOIN producto On(producto.id_pro = detalle.id_pro) Where proyecto.id_proy = '{proyecto.Id_proy}'");
-                DGV_detalle.DataSource = Detalle_modelo.Datos;
+                Cargar_grid_detalle(proyecto.Id_proy.ToString());
 
                 switch (mod)
                 {
@@ -253,8 +252,11 @@ namespace SIPRES.Vistas
         }
 
         Proyecto_modelo Agregar_proyecto()
-        {                       
-            
+        {
+            if (string.IsNullOrEmpty(this.TX_id_proy.Text)!=true)
+            {
+                proyectonew.Id_proy = int.Parse(this.TX_id_proy.Text);
+            }           
             proyectonew.Nombre = this.TX_nombre.Text;
             proyectonew.Descripcion  = this.TX_descripion.Text;
             proyectonew.Estado = this.TX_estado.Text;
@@ -269,18 +271,19 @@ namespace SIPRES.Vistas
             {
                 proyectonew.Identidad = this.TX_identidad.Text;
                 proyectonew.Tipo = "PERSONAL";
-
             }
+                          
+                proyectonew.Total =0;          
 
 
-     
             return proyectonew;
+           
+
+
         }
-
-
+        
         #endregion
-
-
+        
         #region Metodos con Obejetos
 
         private void RB_emp_b_CheckedChanged(object sender, EventArgs e)
@@ -407,11 +410,7 @@ namespace SIPRES.Vistas
                 Modo("c");
             }
             TC_proyecto.SelectedTab = TP_administrar;
-        }
-
-
-
-
+        }                      
 
         #endregion
 
@@ -421,8 +420,7 @@ namespace SIPRES.Vistas
             {
                 string identidad = TX_identidad.Text;
                 Persona_modelo Per;
-                Empresa_modelo Emp;
-                Boolean existe;
+                Empresa_modelo Emp;      //55          
                 if (RB_emp.Checked)
                 {
                     Emp = new Control_empresa().Consultar_emp(identidad);
@@ -434,7 +432,8 @@ namespace SIPRES.Vistas
                         MessageBox.Show("El codigo de empresa no existe,  corrije losa datos ingresados",
                   "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         TX_identidad.Clear();
-                        TX_identidad.Focus();
+                        TX_nombre_p.Clear();
+                        //TX_identidad.Focus();
                     }
                 }
                 else
@@ -448,8 +447,10 @@ namespace SIPRES.Vistas
                     {
                         MessageBox.Show("La identidad de la persona no existe,  corrije los datos ingresados",
                   "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        TX_identidad.Clear();
-                        TX_identidad.Focus();
+                       TX_identidad.Clear();
+                        TX_nombre_p.Clear();
+
+                        //TX_identidad.Focus();
                     }
                 }                         
                
@@ -463,7 +464,8 @@ namespace SIPRES.Vistas
             if (RB_per.Checked)
             {
                 TX_identidad.Mask = "0000-0000-00000";
-                TX_nombre_p.Clear();
+                //TX_nombre_p.Clear();             
+
             }
         }
 
@@ -472,19 +474,34 @@ namespace SIPRES.Vistas
             if (RB_emp.Checked)
             {
                 TX_identidad.Mask = "000000";
-                TX_nombre_p.Clear();
-
+               // TX_nombre_p.Clear();           
             }
         }
 
         private void BT_nuevo_mini_Click(object sender, EventArgs e)
         {
-        
+            TC_proyecto.SelectedTab = TP_administrar;
+            Limpiar();
+            Modo("A");
         }
 
         private void BT_excel_Click(object sender, EventArgs e)
         {
-           
+            string fecha = DateTime.Now.ToShortDateString();
+            string fechaarch = fecha.Replace('/', '_');
+
+            SFD_excel.FileName = "Listado_Proyectos" + fechaarch + ".csv";
+
+
+            if (SFD_excel.ShowDialog() == DialogResult.OK)
+            {
+                string archivo = SFD_excel.FileName;
+                reporte.A_excel(DGV_datos, archivo);
+
+            }
+
+
+
         }
 
         private void BT_nuevo_Click(object sender, EventArgs e)
@@ -495,15 +512,10 @@ namespace SIPRES.Vistas
 
         private void BT_editar_Click(object sender, EventArgs e)
         {
-            if (LLenos()) { Modo("E"); }
-        }
-
-        private void BT_cancelar_Click(object sender, EventArgs e)
-        {
-       
-            if (string.IsNullOrEmpty(TX_id_proy.Text))
+            string codigo = TX_id_proy.Text;
+            if (string.IsNullOrEmpty(codigo))
             {
-                Limpiar();
+
             }
             else
             {
@@ -511,25 +523,304 @@ namespace SIPRES.Vistas
 
                 if (RB_emp_b.Checked)
                 {
+                    Modo_consulta(codigo, "E");
+                }
+                else
+                {
+                    Modo_consulta(codigo, "P");
+                }
+                               
+                Modo("e");
+            }
+        }
+        private void BT_cancelar_Click(object sender, EventArgs e)
+        {
+       
+            if (string.IsNullOrEmpty(TX_id_proy.Text))
+            {
+                Limpiar();
+                BT_editar.Enabled = false;
+                TC_proyecto.SelectedTab = TP_listar;
+        
+            }
+            else
+            {               
+                if (RB_emp_b.Checked)
+                {
                     Modo_consulta(TX_id_proy.Text, "E");
                 }
                 else
                 {
                     Modo_consulta(TX_id_proy.Text, "P");
-                }
-               
+                }                
             }
             Modo("c");
+           
         }
 
         private void BT_nuevo_d_Click(object sender, EventArgs e)
         {
-            Detalle detalle = new Detalle();
-            detalle.Padre = this;
+            Detalle detalle = new Detalle
+            {
+                Padre = this
+            };
             detalle.Show();
         }
 
-        public void Cargar_grid_detalle() {
+        public void Cargar_grid_detalle(string Id_proy) {
+            Control_detalle control_d = new Control_detalle();
+            control_d.Listar_detalle("SELECT  producto.id_pro as Codigo, producto.nombre as Articulo, producto.uni_med as Medida," +
+             " producto.precio as Precio, detalle.cantidad as Cantidad, detalle.total as Total " +
+             " FROM proyecto INNER JOIN detalle On(proyecto.id_proy = detalle.id_proy)  " +
+             $" INNER JOIN producto On(producto.id_pro = detalle.id_pro) Where proyecto.id_proy = '{Id_proy}'");
+            DGV_detalle.DataSource = Detalle_modelo.Datos;
+
         }
+        public void Cargar_grid_detalle()
+        {            
+            DGV_detalle.DataSource = Detalle_modelo.Datos;
+
+        }
+
+        private void BT_eliminar_d_Click(object sender, EventArgs e)
+        {
+            if (Detalle_modelo.Datos != null && DGV_detalle.Rows.Count >= 1)
+            {
+                string valor_se = DGV_detalle.SelectedCells[0].Value.ToString();
+
+                DialogResult respuesta = MessageBox.Show($"Esta Seguro de eliminar el producto {DGV_detalle.SelectedCells[1].Value.ToString()}, " +
+                    $"Eliminar registro", "Sistema Presupuestario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (respuesta == DialogResult.Yes)
+                {
+
+                    for (int i = 0; i < Detalle_modelo.Datos.Rows.Count; i++)
+                    {
+                        if (valor_se == Detalle_modelo.Datos.Rows[i][0].ToString())
+                        {
+                            Detalle_modelo.Datos.Rows.Remove(Detalle_modelo.Datos.Rows[i]);
+                            Cargar_grid_detalle();
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void BT_salir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BT_pdf_Click(object sender, EventArgs e)
+        {
+            string fecha = DateTime.Now.ToShortDateString();
+            string fechaarch = fecha.Replace('/', '_');
+
+            SFD_pdf.FileName = "Listado_Usuarios" + fechaarch + ".pdf";
+
+
+            if (SFD_pdf.ShowDialog() == DialogResult.OK)
+            {
+                string archivo = SFD_pdf.FileName;
+                reporte.A_pdf(archivo, DGV_datos);
+            }
+        }
+
+        private void BT_guardar_Click(object sender, EventArgs e)
+        {
+            string id_proy = TX_id_proy.Text.ToString();            
+            if (LLenos())
+            {
+                
+                control.Consultar_proyecto2(id_proy);
+
+                proyectonew = Agregar_proyecto();
+                if (Proyecto_modelo.Existe)
+                {
+                    DialogResult respuesta = MessageBox.Show("Se ha encontrado el ID " + id_proy +
+                                ", desea actualizar los datos del registro", "Sistema Presupuestario",
+                           MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        Boolean modifico = false;
+                        Boolean act_detalle= false;
+                        if (RB_emp.Checked)
+                        {  modifico = control.Actualizar_proyecto(proyectonew, "E"); }
+                        else
+                        {  modifico = control.Actualizar_proyecto(proyectonew, "P"); }
+
+
+                        if (modifico)
+                        {
+
+                            act_detalle = crt_detalle.Reemplazar_detalle(Detalle_modelo.Datos, id_proy);
+                            if (act_detalle)
+                            {
+
+                            }
+                                                                                                          
+                           // RB_per_b.Checked = true;
+                            Selector_contenido();
+                            if (RB_emp_b.Checked)
+                            { Modo_consulta(proyectonew.Id_proy.ToString(), "E"); }
+                            else
+                            { Modo_consulta(proyectonew.Id_proy.ToString(), "P"); }
+                            Modo("c");
+
+
+                        }
+                        else
+                        {
+                            //MessageBox.Show("No modifico ni mierda");
+                        }
+                    }
+                    else
+                    {
+                        if (RB_emp_b.Checked)
+                        { Modo_consulta(id_proy, "E"); }
+                        else
+                        { Modo_consulta(id_proy, "P"); }
+                        Modo("c");
+                    }
+
+
+
+                }
+                else/// Si no exixte el proyecto lo agrega
+                {
+                    Boolean agrego = false;
+                    Boolean act_detalle = false;
+
+                    if (RB_emp.Checked)
+                    { agrego = control.Añadir_proyecto(proyectonew, "E"); }
+                    else
+                    { agrego = control.Añadir_proyecto(proyectonew, "P"); }
+
+
+                    
+                    if (agrego)
+                    {
+                        MessageBox.Show("Proyecto " + proyectonew.Nombre.ToString() + " agregado correctamente",
+                        "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                        control.Ultimo_registro("SELECT id_proy FROM proyecto WHERE proyecto.id_proy=(SELECT MAX(id_proy)FROM proyecto)");
+
+
+                        act_detalle = crt_detalle.Reemplazar_detalle(Detalle_modelo.Datos, Proyecto_modelo.Ultimo.Rows[0][0].ToString());
+                        if (act_detalle)
+                        {
+
+                        }
+
+                        // RB_per_b.Checked = true;
+                        Selector_contenido();
+                        if (RB_emp_b.Checked)
+                        { Modo_consulta(proyectonew.Id_proy.ToString(), "E"); }
+                        else
+                        { Modo_consulta(proyectonew.Id_proy.ToString(), "P"); }
+                        Modo("c");
+
+
+                    }
+                    else
+                    {
+                        //MessageBox.Show("No agrego ni mierda");
+                    }
+
+
+                }
+
+
+
+            }
+            else
+            {// Caso que no esten llenos los controles
+                MessageBox.Show("Hay campos del registro sin ingresar, tu deberias saber esto",
+               "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
+        Proyecto_modelo Llena_comprobante(string codigo, string modo)
+        {
+            Proyecto_modelo proyecto;
+             proyecto = new Control_proyecto().Consultar_proyecto(codigo,modo);
+
+            if (Proyecto_modelo.Existe)
+            {
+                Proyecto_modelo persona;
+                Empresa_modelo empresa;
+                Usuario_modelo usuario;
+                
+                switch (proyecto.Tipo)
+                {
+                    case "PERSONAL":
+                       persona = new persona
+
+
+                        break;
+                    case "EMPRESA":
+                        
+
+
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+
+
+
+
+                Cuenta_modelo cuentaprocente, cuentabase;
+
+                cuentabase = new Control_cuenta().Consultar_cuenta2(transa.N_cuenta.ToString());
+                Usuario_modelo cajero = new Control_usuario().Consultar_usuario(Usuario_modelo.Usuario_activo);
+                Persona_modelo persona = new Control_persona().Consultar_persona(cajero.Identidad.ToString());
+                if (transa.Procedente != "EFECTIVO")
+                {
+                    cuentaprocente = new Control_cuenta().Consultar_cuenta2(transa.P_n_cuenta.ToString());
+                    comprobante.Procedencia = transa.Procedente + "AHORROS";
+                    Afiliado_modelo afiliad2 = new Control_afiliado().Consultar_afiliado2(cuentaprocente.N_afiliado.ToString());
+                    Persona_modelo cliente2 = new Control_persona().Consultar_persona(afiliad2.Identidad);
+                    comprobante.N_cuenta_procedencia = cuentaprocente.N_cuenta;
+                    comprobante.Nombre_p = cliente2.Nombre + " " + cliente2.Apellido;
+
+                }
+                else
+                {
+                    comprobante.Procedencia = transa.Procedente;
+                    comprobante.N_cuenta_procedencia = 0;
+                    comprobante.Nombre_p = transa.Depositante;
+
+                }
+
+                // colocar aqui los datos
+                comprobante.ID_usuario = Usuario_modelo.Usuario_activo;
+                comprobante.Nombre_usuario = persona.Nombre + " " + persona.Apellido;
+                comprobante.N_transaccion = transa.N_trasaccion;
+                comprobante.Fecha_trans = transa.Fecha;
+                comprobante.Descripcion = Tipo;
+                comprobante.Monto = transa.Monto;
+                comprobante.N_cuenta = cuentabase.N_cuenta;
+                comprobante.T_cuenta = cuentabase.Tipo;
+                comprobante.Estado = transa.Estado;
+                Afiliado_modelo afiliado = new Control_afiliado().Consultar_afiliado2(cuentabase.N_afiliado.ToString());
+                Persona_modelo cliente = new Control_persona().Consultar_persona(afiliado.Identidad);
+                comprobante.Nombre = cliente.Nombre + " " + cliente.Apellido;
+                comprobante.Identidad = cliente.Identidad;
+
+
+            }
+
+            return comprobante;
+
+        }
+
     }
 }
