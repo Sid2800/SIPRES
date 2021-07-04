@@ -20,8 +20,6 @@ namespace SIPRES.Vistas
         Control_rol C_rol = new Control_rol();
         private seleccion seleccion_f = null;
   
-
-
         public usuario()
         {
             InitializeComponent();
@@ -89,9 +87,69 @@ namespace SIPRES.Vistas
             this.CB_activo.Checked = false;
             this.LB_indicador.Text = "";
 
-        }               
+        }
 
         #region Metodos de Carga
+
+        public void Verificar_identidad()
+        {
+            if (TX_identidad.MaskCompleted == true)
+            {
+                string identidad = TX_identidad.Text;
+                Persona_modelo Var;
+                Var = new Control_persona().Consultar_persona(identidad);
+
+                Boolean existe = Persona_modelo.Existe;
+                if (existe)
+                {
+                    Boolean id_con_usu = new Control_usuario().ExistenciaUsuario(identidad);
+
+                    if (id_con_usu)
+                    {
+                        MessageBox.Show("La identidad ingresada ya tiene un usuario asignado, agrega una nueva identidad o corrije",
+                   "Sistema Financiero Cooperativista", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        TX_identidad.Clear();
+                        TX_identidad.Focus();
+                        this.TX_nombre.Clear();
+                        this.TX_apellido.Clear();
+                        this.DT_nacimiento.Value = DateTime.Now;
+                        this.CB_sexo.Text = "";
+                        this.TX_edad.Clear();
+                    }
+
+                    else
+                    {
+
+                        TX_identidad.Text = Var.Identidad;
+                        TX_nombre.Text = Var.Nombre;
+                        TX_apellido.Text = Var.Apellido;
+                        DT_nacimiento.Value = Var.F_nacimiento;
+                        CB_sexo.Text = Var.Genero;
+                        var timeSpan = DateTime.Now - Var.F_nacimiento;
+                        int anios = (timeSpan.Days / 365);
+                        TX_edad.Text = anios.ToString() + " Años";
+
+                        // Generar el ID USaurio
+                        string parteid = TX_identidad.Text.Substring(10, 5);
+                        string partenombre = TX_nombre.Text.Substring(0, 1);
+                        string parteapellido = TX_apellido.Text.Substring(0, 5);
+
+                        TX_id_usu.Text = parteid + "_" + partenombre + parteapellido;
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La identidad ingresada no existe, agrega esta identidad o corrije",
+                   "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TX_identidad.Clear();
+                    TX_identidad.Focus();
+                }
+
+            }
+
+        }
 
         public void Cargar_consultado()
         {
@@ -101,9 +159,7 @@ namespace SIPRES.Vistas
                 Verificar_identidad();
             }
 
-        }
-
-     
+        }     
 
         private void Usuario_Load(object sender, EventArgs e)
         {
@@ -149,7 +205,7 @@ namespace SIPRES.Vistas
                 case "e": // solo un administrador
                           //Controles
                           // TX_identidad.ReadOnly = false;
-                    TX_identidad.Enabled = true;
+                    TX_identidad.Enabled = false;
                     TX_id_usu.Enabled = true;
                     TX_contra.ReadOnly = false;
                     TX_confir.ReadOnly = false;
@@ -452,9 +508,7 @@ namespace SIPRES.Vistas
 
         private void TX_identidad_DoubleClick(object sender, EventArgs e)
         {
-            Control_persona per = new Control_persona();
-
-            per.Listar_persona();
+       
             seleccion frm = this.FormInstance;
             frm.Text = "Seleccion de Personas";
             frm.Show();
@@ -470,7 +524,7 @@ namespace SIPRES.Vistas
                 {
 
                     seleccion_f = new seleccion("persona");
-                    seleccion_f.Padre = this;
+                    seleccion_f.P_usuario = this;
                     seleccion_f.Disposed += new EventHandler(form_Disposed);
                 }
 
@@ -485,64 +539,7 @@ namespace SIPRES.Vistas
 
         #endregion
 
-        public void Verificar_identidad() {
-            if (TX_identidad.MaskCompleted == true)
-            {
-                string identidad = TX_identidad.Text;
-                Persona_modelo Var;
-                Var = new Control_persona().Consultar_persona(identidad);
-
-                Boolean existe = Persona_modelo.Existe;
-                if (existe)
-                {
-                    Boolean id_con_usu = new Control_usuario().ExistenciaUsuario(identidad);
-
-                    if (id_con_usu)
-                    {
-                        MessageBox.Show("La identidad ingresada ya tiene un usuario asignado, agrega una nueva identidad o corrije",
-                   "Sistema Financiero Cooperativista", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                        TX_identidad.Clear();
-                        TX_identidad.Focus();                       
-                        this.TX_nombre.Clear();
-                        this.TX_apellido.Clear();
-                        this.DT_nacimiento.Value = DateTime.Now;
-                        this.CB_sexo.Text = "";
-                        this.TX_edad.Clear();               
-                    }
-
-                    else
-                    {
-
-                        TX_identidad.Text = Var.Identidad;
-                        TX_nombre.Text = Var.Nombre;
-                        TX_apellido.Text = Var.Apellido;
-                        DT_nacimiento.Value = Var.F_nacimiento;
-                        CB_sexo.Text = Var.Genero;
-                        var timeSpan = DateTime.Now - Var.F_nacimiento;
-                        int anios = (timeSpan.Days / 365);
-                        TX_edad.Text = anios.ToString() + " Años";
-
-                        // Generar el ID USaurio
-                        string parteid = TX_identidad.Text.Substring(10, 5);
-                        string partenombre = TX_nombre.Text.Substring(0, 1);
-                        string parteapellido = TX_apellido.Text.Substring(0, 5);
-
-                        TX_id_usu.Text = parteid + "_" + partenombre + parteapellido;
-
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La identidad ingresada no existe, agrega esta identidad o corrije",
-                   "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    TX_identidad.Clear();
-                    TX_identidad.Focus();
-                }
-
-            }
-
-        } 
+      
 
 
     }

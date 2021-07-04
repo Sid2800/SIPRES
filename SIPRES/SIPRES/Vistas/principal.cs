@@ -102,6 +102,9 @@ namespace SIPRES.Vistas
             }
         }
 
+
+        #region Menus Metodo
+
         private void BT_salir_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show("Deseas realmente de la aplicacion, todos los cambios no guardados se perderan"
@@ -139,5 +142,7 @@ namespace SIPRES.Vistas
         {
             Abrir_formulario<producto>();
         }
+
+        #endregion
     }
 }

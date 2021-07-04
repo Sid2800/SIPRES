@@ -130,9 +130,7 @@ namespace SIPRES.Controles
             {
                 MessageBox.Show(error.Message, "Error en el proceso");
             }
-        }
-
-        
+        }       
 
         public float[] AnchuraColum(DataGridView dgv)
         {
@@ -191,8 +189,7 @@ namespace SIPRES.Controles
             Process.Start(ruta);
 
         }
-
-
+        
         public void Presupuesto(string directorio, Prespuesto_modelo presupuesto, DataTable detalle)
         {
             Control_proyecto control = new Control_proyecto();

@@ -19,6 +19,7 @@ namespace SIPRES.Vistas
         Proyecto_modelo proyectonew = new Proyecto_modelo();
         Reporte reporte = new Reporte();
         private Detalle detalle_f = null;
+        private seleccion seleccion_f = null;
         
         public proyecto()
         {
@@ -63,6 +64,61 @@ namespace SIPRES.Vistas
         }
 
         #region Metodos de CArga
+
+        public void Cargar_consultado()
+        {
+            if (!string.IsNullOrEmpty(Consultas.Var))
+            {
+                TX_identidad.Text = Consultas.Var;
+                Verificar_codigo_propietarios();
+            }
+
+        }
+        private void Verificar_codigo_propietarios()
+        {
+            if (string.IsNullOrEmpty(TX_identidad.Text) == false)
+            {
+                string identidad = TX_identidad.Text;
+                Persona_modelo Per;
+                Empresa_modelo Emp;      //55          
+                if (RB_emp.Checked)
+                {
+                    Emp = new Control_empresa().Consultar_emp(identidad);
+                    if (Empresa_modelo.Existe)
+                    {
+                        TX_nombre_p.Text = Emp.Nombre;
+                    }
+                    else
+                    {
+                        MessageBox.Show("El codigo de empresa no existe,  corrije losa datos ingresados",
+                  "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TX_identidad.Clear();
+                        TX_nombre_p.Clear();
+                        //TX_identidad.Focus();
+                    }
+                }
+                else
+                {
+                    Per = new Control_persona().Consultar_persona(identidad);
+                    if (Persona_modelo.Existe)
+                    {
+                        TX_nombre_p.Text = Per.Nombre;
+                    }
+                    else
+                    {
+                        MessageBox.Show("La identidad de la persona no existe,  corrije los datos ingresados",
+                  "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TX_identidad.Clear();
+                        TX_nombre_p.Clear();
+
+                        //TX_identidad.Focus();
+                    }
+                }
+            }
+
+
+
+        }
 
         void Selector_contenido() {
             if (RB_emp_b.Checked)
@@ -367,7 +423,7 @@ namespace SIPRES.Vistas
 
         #endregion
 
-        #region Metodos con Obejetos
+        #region Metodos con Objetos
 
         private void RB_emp_b_CheckedChanged(object sender, EventArgs e)
         {
@@ -445,45 +501,7 @@ namespace SIPRES.Vistas
 
         private void TX_identidad_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TX_identidad.Text) == false)
-            {
-                string identidad = TX_identidad.Text;
-                Persona_modelo Per;
-                Empresa_modelo Emp;      //55          
-                if (RB_emp.Checked)
-                {
-                    Emp = new Control_empresa().Consultar_emp(identidad);
-                    if (Empresa_modelo.Existe)
-                    {
-                        TX_nombre_p.Text = Emp.Nombre;
-                    }
-                    else
-                    {
-                        MessageBox.Show("El codigo de empresa no existe,  corrije losa datos ingresados",
-                  "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        TX_identidad.Clear();
-                        TX_nombre_p.Clear();
-                        //TX_identidad.Focus();
-                    }
-                }
-                else
-                {
-                    Per = new Control_persona().Consultar_persona(identidad);
-                    if (Persona_modelo.Existe)
-                    {
-                        TX_nombre_p.Text = Per.Nombre;
-                    }
-                    else
-                    {
-                        MessageBox.Show("La identidad de la persona no existe,  corrije los datos ingresados",
-                  "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        TX_identidad.Clear();
-                        TX_nombre_p.Clear();
-
-                        //TX_identidad.Focus();
-                    }
-                }
-            }
+            Verificar_codigo_propietarios();
         }
 
         private void RB_per_CheckedChanged(object sender, EventArgs e)
@@ -782,7 +800,41 @@ namespace SIPRES.Vistas
         #endregion
 
         #region Llamado a Otro Formulario
+        // Formulario de Seleccion de Persona / empresa
 
+        private void TX_identidad_DoubleClick(object sender, EventArgs e)
+        {
+            seleccion frm = this.FormInstance1;
+
+            frm.Text = "Seleccion de Personas";
+            frm.Show();
+            frm.BringToFront();
+        }
+
+        private seleccion FormInstance1
+        {
+            get
+            {
+                if (seleccion_f == null)
+                {
+                    if (!RB_emp.Checked)
+                    { seleccion_f = new seleccion("persona"); }
+                    else {seleccion_f = new seleccion("empresa"); }
+                    seleccion_f.P_proyecto = this;
+                    seleccion_f.Disposed += new EventHandler(form_Disposed1);
+                }
+
+                return seleccion_f;
+            }
+        }
+
+        void form_Disposed1(object sender, EventArgs e)
+        {
+            seleccion_f = null;
+        }
+        
+
+        // Formulario de Seleccion de Detallle
         private void BT_nuevo_d_Click(object sender, EventArgs e)
         {
             Detalle frm = this.FormInstance;
@@ -807,16 +859,15 @@ namespace SIPRES.Vistas
                 return detalle_f;
             }
         }
-
+                       
         void form_Disposed(object sender, EventArgs e)
         {
             detalle_f = null;
         }
 
-
-
-
-
         #endregion
+                      
+
+
     }
 }

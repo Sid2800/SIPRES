@@ -17,6 +17,7 @@ namespace SIPRES.Vistas
         Control_empresa control = new Control_empresa();
         Reporte reporte = new Reporte();
         Empresa_modelo empnew = new Empresa_modelo();
+        private seleccion seleccion_f = null;
 
         public empresa()
         {
@@ -56,11 +57,39 @@ namespace SIPRES.Vistas
 
 
         #region Metodos de Carga
+   
         private void Empresa_Load(object sender, EventArgs e)
         {
             Cargar_grid();
         }
 
+        public void Verificar_identidad()
+        {
+            if (TX_identidad.MaskCompleted == true)
+            {
+                string identidad = TX_identidad.Text;
+                Persona_modelo Var;
+                Var = new Control_persona().Consultar_persona(identidad);
+
+                Boolean existe = Persona_modelo.Existe;
+                if (existe)
+                {
+                    TX_identidad.Text = Var.Identidad;
+                    TX_nombre.Text = Var.Nombre;
+                    TX_apellido.Text = Var.Apellido;
+                    TX_tell.Text = Var.Tel_cell;
+                    TX_correo.Text = Var.Correo;
+                }
+                else
+                {
+                    MessageBox.Show("La identidad ingresada no existe, agrega esta identidad o corrije",
+                   "Sistema presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TX_identidad.Clear();
+                    TX_identidad.Focus();
+                }
+            }
+        }
+        
         void Cargar_grid()
         {
             control.Listar_emp("SELECT  empresa.id_emp as Codigo, empresa.nombre as Empresa, empresa.rtn as RTN, empresa.telefono as Telefono," +
@@ -180,6 +209,15 @@ namespace SIPRES.Vistas
 
 
         #region Metodos de Objetos
+
+        private void TX_identidad_DoubleClick(object sender, EventArgs e)
+        {
+
+            seleccion frm = this.FormInstance;
+            frm.Text = "Seleccion de Personas";
+            frm.Show();
+            frm.BringToFront();
+        }
         private void TC_empresa_Selected(object sender, TabControlEventArgs e)
         {
             Modo("C");
@@ -210,30 +248,7 @@ namespace SIPRES.Vistas
 
         private void TX_identidad_Leave(object sender, EventArgs e)
         {
-            if (TX_identidad.MaskCompleted == true)
-            {
-                string identidad = TX_identidad.Text;
-                Persona_modelo Var;
-                Var = new Control_persona().Consultar_persona(identidad);
-
-                Boolean existe = Persona_modelo.Existe;
-                if (existe)
-                {
-                    TX_identidad.Text = Var.Identidad;
-                    TX_nombre.Text = Var.Nombre;
-                    TX_apellido.Text = Var.Apellido;
-                    TX_tell.Text = Var.Tel_cell;
-                    TX_correo.Text = Var.Correo;
-                }
-                else
-                {
-                    MessageBox.Show("La identidad ingresada no existe, agrega esta identidad o corrije",
-                   "Sistema presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    TX_identidad.Clear();
-                    TX_identidad.Focus();
-                }
-
-            }
+            Verificar_identidad();
         }
 
 
@@ -380,7 +395,41 @@ namespace SIPRES.Vistas
 
 
 
+        #endregion      
+
+
+        #region Metodos Cargar formulario               
+        private seleccion FormInstance
+        {
+            get
+            {
+                if (seleccion_f == null)
+                {
+
+                    seleccion_f = new seleccion("persona");
+                    seleccion_f.P_empresa = this;
+                    seleccion_f.Disposed += new EventHandler(form_Disposed);
+                }
+                return seleccion_f;
+            }
+        }
+
+        void form_Disposed(object sender, EventArgs e)
+        {
+            seleccion_f = null;
+        }
+
+        public void Cargar_consultado()
+        {
+            if (!string.IsNullOrEmpty(Consultas.Var))
+            {
+                TX_identidad.Text = Consultas.Var;
+                Verificar_identidad();
+            }
+        }                     
+
         #endregion
 
+    
     }
 }

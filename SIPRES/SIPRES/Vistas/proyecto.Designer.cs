@@ -346,7 +346,7 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.DGV_datos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGV_datos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGV_datos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.DGV_datos.BackgroundColor = System.Drawing.SystemColors.Info;
             this.DGV_datos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DGV_datos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
@@ -502,6 +502,7 @@
             this.TX_identidad.Name = "TX_identidad";
             this.TX_identidad.Size = new System.Drawing.Size(215, 25);
             this.TX_identidad.TabIndex = 35;
+            this.TX_identidad.DoubleClick += new System.EventHandler(this.TX_identidad_DoubleClick);
             this.TX_identidad.Leave += new System.EventHandler(this.TX_identidad_Leave);
             // 
             // TX_nombre_p

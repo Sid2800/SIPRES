@@ -17,6 +17,9 @@ namespace SIPRES.Vistas
     {
         Producto_modelo producto = new Producto_modelo();
         public proyecto Padre;
+        private seleccion seleccion_f = null;
+
+
 
         Boolean LLenos()
         {
@@ -186,5 +189,50 @@ namespace SIPRES.Vistas
 
           
         }
+
+        private void TX_codigo_DoubleClick(object sender, EventArgs e)
+        {
+            seleccion frm = this.FormInstance;
+            frm.Text = "Seleccion de Productos";
+            frm.Show();
+            frm.BringToFront();
+        }
+
+        private seleccion FormInstance
+        {
+
+            get
+            {
+                if (seleccion_f == null)
+                {
+
+                    seleccion_f = new seleccion("producto");
+                    seleccion_f.P_detalle = this;
+                    seleccion_f.Disposed += new EventHandler(form_Disposed);
+                }
+
+                return seleccion_f;
+            }
+        }
+
+
+        void form_Disposed(object sender, EventArgs e)
+        {
+            seleccion_f = null;
+        }
+
+
+                          
+        public void Cargar_consultado()
+        {
+            if (!string.IsNullOrEmpty(Consultas.Var))
+            {
+                TX_codigo.Text = Consultas.Var;
+                Veriricar_exitencia_producto();
+            }
+
+        }
+
+
     }
 }

@@ -14,15 +14,21 @@ namespace SIPRES.Vistas
 {
     public partial class seleccion : Form
     {
-        public usuario Padre;
+        public usuario P_usuario;
+        public empresa P_empresa;
+        public proyecto P_proyecto;
+        public Detalle P_detalle;
+
         Control_consultas control = new Control_consultas();
         string col1, col2,col3, col4;
 
         public seleccion()
         {
             InitializeComponent();
-        }
+        }             
+               
 
+        #region Metodos de CArga
         public seleccion(string tabla)
         {
             InitializeComponent();
@@ -36,10 +42,68 @@ namespace SIPRES.Vistas
 
         }
 
+        void Filtrar_datos()
+        {
+
+            if (Consultas.Datos != null)
+            {
+                Consultas.Datos.DefaultView.RowFilter =
+                $"{col1} + {col2} + {col3} + {col4} like'%" +
+                TX_buscar.Text + "%'";
+            }
+        }
+        private void Seleccionar()
+        {
+            string codigo = DGV_detalle.SelectedCells[0].Value.ToString();
+            if (!string.IsNullOrEmpty(codigo))
+            {
+                Consultas.Var = DGV_detalle.SelectedCells[0].Value.ToString();
+                if (P_usuario != null)
+                {
+                    P_usuario.Cargar_consultado();
+                }
+                else
+                {
+                    if (P_empresa != null)
+                    {
+                        P_empresa.Cargar_consultado();
+                    }
+                    else
+                    {
+                        if (P_proyecto != null)
+                        {
+                            P_proyecto.Cargar_consultado();
+                        }
+                        else
+                        {
+                            if (P_detalle != null)
+                            {
+                                P_detalle.Cargar_consultado();
+                            }
+                        }
+
+                    }
+                }
+
+
+
+                this.Close();
+            }
+
+        }
+
+        #endregion
+
+        #region Metodos con controles
         private void BT_limpiar_Click(object sender, EventArgs e)
         {
             TX_buscar.Clear();
             TX_buscar.Focus();
+        }
+
+        private void Bt_aseptar_Click(object sender, EventArgs e)
+        {
+            Seleccionar();
         }
 
         private void BT_cancelar_Click(object sender, EventArgs e)
@@ -52,28 +116,11 @@ namespace SIPRES.Vistas
             Filtrar_datos();
         }
 
-        void Filtrar_datos()
+        private void DGV_detalle_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            if (Consultas.Datos != null)
-            {
-                Consultas.Datos.DefaultView.RowFilter =
-                $"{col1} + {col2} + {col3} + {col4} like'%" +
-                TX_buscar.Text + "%'";
-            }
+            Seleccionar();
         }
-
-
-        private void Bt_aseptar_Click(object sender, EventArgs e)
-        {
-            string codigo = DGV_detalle.SelectedCells[0].Value.ToString();
-            if (!string.IsNullOrEmpty(codigo)) {
-                Consultas.Var = DGV_detalle.SelectedCells[0].Value.ToString();
-                Padre.Cargar_consultado();
-                this.Close();
-            }
-        }
-
+        #endregion
 
     }
 }

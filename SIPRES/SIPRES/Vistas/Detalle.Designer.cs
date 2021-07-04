@@ -174,6 +174,7 @@
             this.TX_codigo.Size = new System.Drawing.Size(181, 27);
             this.TX_codigo.TabIndex = 8;
             this.TX_codigo.TextChanged += new System.EventHandler(this.TX_codigo_TextChanged);
+            this.TX_codigo.DoubleClick += new System.EventHandler(this.TX_codigo_DoubleClick);
             // 
             // label4
             // 
