@@ -232,4 +232,10 @@
   <data name="Eliminar24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Eliminar24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="imprimir24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imprimir24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sipres_logo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sipres_logo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

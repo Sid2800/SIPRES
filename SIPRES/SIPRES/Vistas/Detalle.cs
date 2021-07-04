@@ -95,7 +95,6 @@ namespace SIPRES.Vistas
         {
             DataRow linea;
             DataColumn columna;
-
             if (Veriricar_exitencia_producto())
             {
                 if (LLenos())
@@ -108,7 +107,7 @@ namespace SIPRES.Vistas
                             if (Detalle_modelo.Datos.Rows[i][0].ToString() == TX_codigo.Text)
                             {
                                 MessageBox.Show("Existe una refencia a este codigo, verifica he intentalo de nuevo",
-     "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 break;
                             }
                         }
@@ -155,7 +154,9 @@ namespace SIPRES.Vistas
 
                         columna = new DataColumn();
                         columna.ColumnName = "Total";
-                        Detalle_modelo.Datos.Columns.Add(columna);
+                        columna.DataType = System.Type.GetType("System.Double");
+                        Detalle_modelo.Datos.Columns.Add(columna);                       
+                       
 
                         linea = Detalle_modelo.Datos.NewRow();
                         linea[0] = TX_codigo.Text;
@@ -167,18 +168,14 @@ namespace SIPRES.Vistas
                         Detalle_modelo.Datos.Rows.Add(linea);
                         SystemSounds.Beep.Play();
                         Limpiar();
-
                         Padre.Cargar_grid_detalle();
                     }
-
                 }
                 else
                 {
                     MessageBox.Show("Hay datos sin ingresar, verifica he intentalo de nuevo",
      "Sistema Presupuestario", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-                               
+                }                                
             }
          
 

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controles\Conexion.cs" />
+    <Compile Include="Controles\Control_consultas.cs" />
     <Compile Include="Controles\Control_detalle.cs" />
     <Compile Include="Controles\Control_empresa.cs" />
     <Compile Include="Controles\Control_persona.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Controles\Control_rol.cs" />
     <Compile Include="Controles\Control_usuario.cs" />
     <Compile Include="Controles\Reporte.cs" />
+    <Compile Include="Models\Consultas.cs" />
     <Compile Include="Models\Detalle_modelo.cs" />
     <Compile Include="Models\Empresa_modelo.cs" />
     <Compile Include="Models\Persona_modelo.cs" />
@@ -119,6 +121,12 @@
     <Compile Include="Vistas\proyecto.Designer.cs">
       <DependentUpon>proyecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\seleccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\seleccion.Designer.cs">
+      <DependentUpon>seleccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\usuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\proyecto.resx">
       <DependentUpon>proyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\seleccion.resx">
+      <DependentUpon>seleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\usuario.resx">
       <DependentUpon>usuario.cs</DependentUpon>
@@ -281,6 +292,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Eliminar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sipres_logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imprimir24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

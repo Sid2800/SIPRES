@@ -243,6 +243,16 @@ namespace SIPRES.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imprimir24 {
+            get {
+                object obj = ResourceManager.GetObject("imprimir24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap limpiar24 {
             get {
                 object obj = ResourceManager.GetObject("limpiar24", resourceCulture);
@@ -386,6 +396,16 @@ namespace SIPRES.Properties {
         internal static System.Drawing.Bitmap Sipres_logo {
             get {
                 object obj = ResourceManager.GetObject("Sipres_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sipres_logo2 {
+            get {
+                object obj = ResourceManager.GetObject("Sipres_logo2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

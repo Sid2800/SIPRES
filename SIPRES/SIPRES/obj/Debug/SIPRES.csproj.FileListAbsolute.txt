@@ -19,3 +19,4 @@ C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.empresa.resources
 C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.producto.resources
 C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.proyecto.resources
 C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.Detalle.resources
+C:\Sipres\SIPRES\SIPRES\obj\Debug\SIPRES.Vistas.seleccion.resources

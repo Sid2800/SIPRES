@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SIPRES.Models;
+using System.Data;
 
 namespace SIPRES.Controles
 {
@@ -191,112 +193,103 @@ namespace SIPRES.Controles
         }
 
 
-        public void Presupuesto(string directorio, Comprobante_modelo comprobante)
+        public void Presupuesto(string directorio, Prespuesto_modelo presupuesto, DataTable detalle)
         {
-
-
+            Control_proyecto control = new Control_proyecto();
+            
             try
             {
-                Document PDF = new Document(PageSize.A6);
+                Document PDF = new Document(PageSize.A4);
                 string fecha = DateTime.Now.ToShortDateString();
 
                 PdfWriter escritura = PdfWriter.GetInstance(PDF, new FileStream(directorio, FileMode.Create));
 
                 // Metadatos
-                PDF.AddTitle("COMPROBANTE DE TRANSSACCION");
-                PDF.AddCreator("SIFICOP");
+                PDF.AddTitle("PREPUESTO");
+                PDF.AddCreator("SIPRES");
                 PDF.Open();
 
-                #region Datos del Cajero
-                PdfPTable tabla = new PdfPTable(2);
+                #region Datos del proyecto
+
+                PdfPTable tabla = new PdfPTable(4);
                 tabla.DefaultCell.Padding = 3;
 
-                tabla.WidthPercentage = 100;
+                tabla.WidthPercentage = 90;
                 tabla.DefaultCell.BorderWidth = 0.0f;
-                tabla.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
-
-                tabla.AddCell(new Phrase("CAJERO ID", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla.AddCell(new Phrase(comprobante.ID_usuario, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                tabla.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;                                           
+                
+                tabla.AddCell(new Phrase("ID" , FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.BOLD)));
+                tabla.AddCell(new Phrase(presupuesto.ID_proyecto.ToString(), FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.NORMAL)));
+                tabla.AddCell(new Phrase("PROYECTO", FontFactory.GetFont("ARIAL",7, iTextSharp.text.Font.BOLD)));
+                tabla.AddCell(new Phrase(presupuesto.Nombre_proyecto, FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.NORMAL)));
                 tabla.CompleteRow();
+                tabla.AddCell(new Phrase("TIPO", FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.BOLD)));
+                tabla.AddCell(new Phrase(presupuesto.Tipo_proyecto.ToString(), FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.NORMAL)));
+                tabla.AddCell(new Phrase("PROPIETARIO", FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.BOLD)));
+                tabla.AddCell(new Phrase(presupuesto.Propietario, FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.NORMAL)));
+                tabla.CompleteRow();                              
 
-                tabla.AddCell(new Phrase("CAJERO NOMBRE", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla.AddCell(new Phrase(comprobante.Nombre_usuario, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                PdfPTable tabla2 = new PdfPTable(1);
+                tabla2.DefaultCell.Padding = 3;
 
+                tabla2.WidthPercentage = 90;
+                tabla2.DefaultCell.BorderWidth = 0.0f;
+                tabla2.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                tabla2.AddCell(new Phrase("DESCRIPCION", FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.BOLD)));
+                
+                tabla2.AddCell(new Phrase(presupuesto.Descripcion_proyecto, FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.NORMAL)));
                 tabla.CompleteRow();
                 #endregion
 
-                #region Datos de la tran
-                PdfPTable tabla_t = new PdfPTable(2);
-                tabla_t.DefaultCell.Padding = 3;
+                #region Detalle del Presupuesto
+                PdfPTable tabla3 = new PdfPTable(5);
+                tabla3.DefaultCell.Padding = 3;
+                tabla3.WidthPercentage = 90;
+                tabla3.DefaultCell.BorderWidth = 0.0001f;
+                tabla3.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+               
+                // Insertar el encabezado de la tabla exportada
+                for (int i = 1; i < detalle.Columns.Count; i++)
+                {
+                    tabla3.AddCell(new Phrase(detalle.Columns[i].ToString(), FontFactory.GetFont("ARIAL", 8, iTextSharp.text.Font.BOLD)));
+                }
+                
+              // Ciclos para llenar al grueso de las tados, in ciclo por fila y otro por las columnas de cada fila XD
+                for (int i = 0; i < detalle.Rows.Count; i++)
+                {
+                    for (int j = 1; j < detalle.Columns.Count; j++)
+                    {
+                        if (detalle.Rows[i][j] != null)
+                        {
+                            tabla3.AddCell(new Phrase(detalle.Rows[i][j].ToString(),
+                                FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
+                        }
+                    }
+                    tabla3.CompleteRow();
+                }
 
-                tabla_t.WidthPercentage = 100;
-                tabla_t.DefaultCell.BorderWidth = 0.0f;
-                tabla_t.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+                // Totalizando la coleccion de datos
+                control.Crear_total($"SELECT  SUM(total) Suma_total FROM detalle Where detalle.id_proy = '{presupuesto.ID_proyecto}'");
 
-                tabla_t.AddCell(new Phrase("# TRANSACCION", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.N_transaccion.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
 
-                tabla_t.AddCell(new Phrase("FECHA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.Fecha_trans.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-
-                tabla_t.AddCell(new Phrase("DESCRIPCION", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.Descripcion, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-
-                tabla_t.AddCell(new Phrase("MONTO", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.Monto.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-
-                tabla_t.AddCell(new Phrase("# CUENTA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.N_cuenta.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-
-                tabla_t.AddCell(new Phrase("TIPO CUENTA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.T_cuenta, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-
-                tabla_t.AddCell(new Phrase("AFILIADO", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.Nombre, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-
-                tabla_t.AddCell(new Phrase("IDENTIDAD", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_t.AddCell(new Phrase(comprobante.Identidad, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_t.CompleteRow();
-                #endregion
-
-                #region Datos de la Procedencia
-                PdfPTable tabla_p = new PdfPTable(2);
-                tabla_p.DefaultCell.Padding = 3;
-
-                tabla_p.WidthPercentage = 100;
-                tabla_p.DefaultCell.BorderWidth = 0.0f;
-                tabla_p.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
-
-                tabla_p.AddCell(new Phrase("PROCEDENCIA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_p.AddCell(new Phrase(comprobante.Procedencia, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_p.CompleteRow();
-
-                tabla_p.AddCell(new Phrase("# CUENTA", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_p.AddCell(new Phrase(comprobante.N_cuenta_procedencia.ToString(), FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_p.CompleteRow();
-
-                tabla_p.AddCell(new Phrase("NOMBRE ", FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.BOLD)));
-                tabla_p.AddCell(new Phrase(comprobante.Nombre_p, FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL)));
-                tabla_p.CompleteRow();
-
+                Paragraph Total = new Paragraph($"  TOTAL  {Proyecto_modelo.Ntotal.Rows[0][0].ToString()} Lps         ",
+                    FontFactory.GetFont("ARIAL", 10, iTextSharp.text.Font.BOLD))
+                {
+                    Alignment = Element.ALIGN_RIGHT
+                };
 
 
                 #endregion
 
+                                             
 
                 // Creando el titulo
 
-                Paragraph Titulo = new Paragraph("Sistema Financiero Cooperativista ",
-                    FontFactory.GetFont("ARIAL", 11, iTextSharp.text.Font.BOLD))
+                Paragraph Titulo = new Paragraph("Sistema Presupuestario",
+                    FontFactory.GetFont("ARIAL", 14, iTextSharp.text.Font.BOLD))
                 {
-                    Alignment = Element.ALIGN_RIGHT
+                    Alignment = Element.ALIGN_CENTER
                 };
 
 
@@ -309,7 +302,8 @@ namespace SIPRES.Controles
 
 
                 // Linea Separadora
-                Paragraph separador = new Paragraph("---------------------------------------------------------------",
+                Paragraph separador = new Paragraph("-----------------------------------------------------------------------------" +
+                    "---------------------------------------------------------------------------------------------------------",
                     FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.NORMAL))
                 {
                     Alignment = Element.ALIGN_CENTER
@@ -324,8 +318,10 @@ namespace SIPRES.Controles
 
                 // Fecha de creacion del Reporte
 
-                Paragraph FechaReporte = new Paragraph("Fecha Creacion: " + fecha,
-                    FontFactory.GetFont("ARIAL", 6, iTextSharp.text.Font.ITALIC))
+                Paragraph FechaReporte = new Paragraph($"Fecha Creacion:{fecha} " +
+                    $"                                                                 " +
+                    $"                                         Impreso por {presupuesto.ID_usuario}",
+                    FontFactory.GetFont("ARIAL", 7, iTextSharp.text.Font.ITALIC))
                 {
                     Alignment = Element.ANNOTATION
 
@@ -333,32 +329,32 @@ namespace SIPRES.Controles
 
 
 
-                iTextSharp.text.Image Logo = iTextSharp.text.Image.GetInstance(Properties.Resources.Logo_sinletras,
+                iTextSharp.text.Image Logo = iTextSharp.text.Image.GetInstance(Properties.Resources.Sipres_logo2,
                     System.Drawing.Imaging.ImageFormat.Png);
 
-                Logo.ScaleAbsoluteWidth(48);
-                Logo.ScaleAbsoluteHeight(48);
-                Logo.SetAbsolutePosition(PDF.PageSize.Width - 36f - 250f, PDF.PageSize.Height - 36f - 30f);
+               Logo.ScaleAbsoluteWidth(48);
+               Logo.ScaleAbsoluteHeight(48);
+               Logo.SetAbsolutePosition(PDF.PageSize.Width - 36f - 470f, PDF.PageSize.Height - 36f - 40f);
 
-                iTextSharp.text.Image Sificcop = iTextSharp.text.Image.GetInstance(Properties.Resources.sificoop,
-                   System.Drawing.Imaging.ImageFormat.Png);
-
-
+    
 
 
 
                 // Agreganndo los objetos Creados a Reporte
                 PDF.Add(Logo);
-
                 PDF.Add(Titulo);
                 PDF.Add(Chunk.NEWLINE);
-
-                PDF.Add(tabla);
+                PDF.Add(tabla);              
+                PDF.Add(tabla2);            
+                
                 PDF.Add(separador);
-                PDF.Add(tabla_t);
+                PDF.Add(Chunk.NEWLINE);
+                PDF.Add(tabla3);
                 PDF.Add(separador);
-                PDF.Add(tabla_p);
+                PDF.Add(Total);
                 PDF.Add(separador);
+             
+            
                 PDF.Add(Chunk.NEWLINE);
                 PDF.Add(Chunk.NEWLINE);
 

@@ -16,8 +16,9 @@ namespace SIPRES.Models
 
         public string Nombre_proyecto { get; set; } // metodo
 
-        
-        public int Tipo_proyecto { get; set; }
+      
+
+        public string Tipo_proyecto { get; set; }
 
         public DateTime Fecha_inicio { get; set; } // metodo
 
@@ -26,13 +27,15 @@ namespace SIPRES.Models
         public float Total_proyecto { get; set; } // metodo
 
         public string Descripcion_proyecto { get; set; }
-        
+
         /// propietario
 
-        public string identidad { get; set; }
+        public string Propietario { get; set; }
 
 
-        public int id_emp { get; set; }
+        public string Codigo_propietario { get; set; }
+
+
 
 
 

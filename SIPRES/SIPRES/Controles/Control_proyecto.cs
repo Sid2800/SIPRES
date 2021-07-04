@@ -255,8 +255,7 @@ namespace SIPRES.Controles
                     using (SqlConnection sqlCon = new Conexion().CadenaConexion())
                     {
 
-                        sqlCon.Open();
-                        //string Qry = "select * from usuario";
+                        sqlCon.Open();                      
                         using (SqlCommand cmd = new SqlCommand(Qry, sqlCon))
                         {
 
@@ -268,7 +267,32 @@ namespace SIPRES.Controles
                     Proyecto_modelo.Ntotal = dt;
                 }
             }
-            catch (Exception e) { MessageBox.Show(e.Message); }
+            catch (Exception e) { MessageBox.Show(e.Message+"Crear Total"); }
+        }
+
+
+        public void Actualizar_total(string codigo, Double total)
+        {          
+     
+            try
+            {
+                using (SqlConnection sqlCon = new Conexion().CadenaConexion())
+                {
+                    sqlCon.Open();                                       
+                     string Qry = "update [dbo].[proyecto] set Total = '" +  total +  "' where id_proy = '" + codigo + "';";
+                                          
+                    using (SqlCommand cmd = new SqlCommand(Qry, sqlCon))
+                    {
+                        cmd.ExecuteNonQuery();                      
+                    }
+                    sqlCon.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + "Actualizar Total");
+            }
+           
         }
 
 

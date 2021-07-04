@@ -28,15 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TC_usuario = new System.Windows.Forms.TabControl();
             this.TP_listar = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BT_pdf = new System.Windows.Forms.Button();
+            this.BT_nuevo_mini = new System.Windows.Forms.Button();
+            this.BT_editar_mini = new System.Windows.Forms.Button();
+            this.BT_excel = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BT_limpiar = new System.Windows.Forms.Button();
             this.DGV_datos = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.TX_buscar = new System.Windows.Forms.TextBox();
@@ -66,17 +71,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.SFD_excel = new System.Windows.Forms.SaveFileDialog();
-            this.SFD_pdf = new System.Windows.Forms.SaveFileDialog();
-            this.BT_pdf = new System.Windows.Forms.Button();
-            this.BT_nuevo_mini = new System.Windows.Forms.Button();
-            this.BT_editar_mini = new System.Windows.Forms.Button();
-            this.BT_excel = new System.Windows.Forms.Button();
-            this.BT_limpiar = new System.Windows.Forms.Button();
             this.BT_cancelar = new System.Windows.Forms.Button();
             this.BT_editar = new System.Windows.Forms.Button();
             this.BT_guardar = new System.Windows.Forms.Button();
             this.BT_nuevo = new System.Windows.Forms.Button();
+            this.SFD_excel = new System.Windows.Forms.SaveFileDialog();
+            this.SFD_pdf = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BT_salir = new System.Windows.Forms.Button();
             this.TC_usuario.SuspendLayout();
@@ -131,6 +131,96 @@
             this.panel2.Size = new System.Drawing.Size(92, 468);
             this.panel2.TabIndex = 31;
             // 
+            // BT_pdf
+            // 
+            this.BT_pdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_pdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_pdf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_pdf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_pdf.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_pdf.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_pdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_pdf.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_pdf.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_pdf.Image = global::SIPRES.Properties.Resources.pdf;
+            this.BT_pdf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_pdf.Location = new System.Drawing.Point(2, 398);
+            this.BT_pdf.Name = "BT_pdf";
+            this.BT_pdf.Size = new System.Drawing.Size(89, 38);
+            this.BT_pdf.TabIndex = 4;
+            this.BT_pdf.Text = "PDF";
+            this.BT_pdf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_pdf.UseVisualStyleBackColor = false;
+            this.BT_pdf.Click += new System.EventHandler(this.BT_pdf_Click);
+            // 
+            // BT_nuevo_mini
+            // 
+            this.BT_nuevo_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_nuevo_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_nuevo_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_nuevo_mini.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_nuevo_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_nuevo_mini.FlatAppearance.BorderSize = 0;
+            this.BT_nuevo_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_nuevo_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_nuevo_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_nuevo_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_nuevo_mini.Image = global::SIPRES.Properties.Resources.Nuevo24;
+            this.BT_nuevo_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_nuevo_mini.Location = new System.Drawing.Point(0, 18);
+            this.BT_nuevo_mini.Name = "BT_nuevo_mini";
+            this.BT_nuevo_mini.Size = new System.Drawing.Size(91, 35);
+            this.BT_nuevo_mini.TabIndex = 2;
+            this.BT_nuevo_mini.Text = "Nuevo";
+            this.BT_nuevo_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_nuevo_mini.UseVisualStyleBackColor = false;
+            this.BT_nuevo_mini.Click += new System.EventHandler(this.BT_nuevo_mini_Click);
+            // 
+            // BT_editar_mini
+            // 
+            this.BT_editar_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_editar_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_editar_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_editar_mini.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_editar_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_editar_mini.FlatAppearance.BorderSize = 0;
+            this.BT_editar_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_editar_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_editar_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_editar_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_editar_mini.Image = global::SIPRES.Properties.Resources.Editar24;
+            this.BT_editar_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_editar_mini.Location = new System.Drawing.Point(3, 62);
+            this.BT_editar_mini.Name = "BT_editar_mini";
+            this.BT_editar_mini.Size = new System.Drawing.Size(89, 38);
+            this.BT_editar_mini.TabIndex = 3;
+            this.BT_editar_mini.Text = "Editar";
+            this.BT_editar_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_editar_mini.UseVisualStyleBackColor = false;
+            this.BT_editar_mini.Click += new System.EventHandler(this.BT_editar_mini_Click);
+            // 
+            // BT_excel
+            // 
+            this.BT_excel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BT_excel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
+            this.BT_excel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BT_excel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BT_excel.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.BT_excel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
+            this.BT_excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BT_excel.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BT_excel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BT_excel.Image = global::SIPRES.Properties.Resources.xls;
+            this.BT_excel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BT_excel.Location = new System.Drawing.Point(2, 355);
+            this.BT_excel.Name = "BT_excel";
+            this.BT_excel.Size = new System.Drawing.Size(89, 38);
+            this.BT_excel.TabIndex = 5;
+            this.BT_excel.Text = "Excel";
+            this.BT_excel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BT_excel.UseVisualStyleBackColor = false;
+            this.BT_excel.Click += new System.EventHandler(this.BT_excel_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
@@ -148,16 +238,26 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Listar Usuario";
             // 
+            // BT_limpiar
+            // 
+            this.BT_limpiar.Image = global::SIPRES.Properties.Resources.limpiar24;
+            this.BT_limpiar.Location = new System.Drawing.Point(423, 24);
+            this.BT_limpiar.Name = "BT_limpiar";
+            this.BT_limpiar.Size = new System.Drawing.Size(28, 29);
+            this.BT_limpiar.TabIndex = 1;
+            this.BT_limpiar.UseVisualStyleBackColor = true;
+            this.BT_limpiar.Click += new System.EventHandler(this.BT_limpiar_Click);
+            // 
             // DGV_datos
             // 
             this.DGV_datos.AllowUserToAddRows = false;
             this.DGV_datos.AllowUserToDeleteRows = false;
             this.DGV_datos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_datos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_datos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_datos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -165,43 +265,43 @@
             this.DGV_datos.BackgroundColor = System.Drawing.SystemColors.Info;
             this.DGV_datos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DGV_datos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Ivory;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_datos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Ivory;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_datos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV_datos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_datos.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(113)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_datos.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(113)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_datos.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_datos.EnableHeadersVisualStyles = false;
             this.DGV_datos.Location = new System.Drawing.Point(9, 62);
             this.DGV_datos.Name = "DGV_datos";
             this.DGV_datos.ReadOnly = true;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_datos.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_datos.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_datos.RowHeadersVisible = false;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
-            this.DGV_datos.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            this.DGV_datos.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGV_datos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_datos.Size = new System.Drawing.Size(904, 374);
             this.DGV_datos.TabIndex = 12;
@@ -293,6 +393,7 @@
             this.TX_identidad.Name = "TX_identidad";
             this.TX_identidad.Size = new System.Drawing.Size(235, 27);
             this.TX_identidad.TabIndex = 8;
+            this.TX_identidad.DoubleClick += new System.EventHandler(this.TX_identidad_DoubleClick);
             this.TX_identidad.Leave += new System.EventHandler(this.TX_identidad_Leave);
             // 
             // label7
@@ -529,118 +630,6 @@
             this.panel1.Size = new System.Drawing.Size(112, 468);
             this.panel1.TabIndex = 34;
             // 
-            // SFD_excel
-            // 
-            this.SFD_excel.Filter = "\"Archivo CSV|*.csv\"";
-            this.SFD_excel.InitialDirectory = "C:\\Sipres\\Reportes\\Excel";
-            // 
-            // SFD_pdf
-            // 
-            this.SFD_pdf.FileName = ".pdf";
-            this.SFD_pdf.Filter = "\"Archivo PDF|*.pdf\"";
-            this.SFD_pdf.InitialDirectory = "C:\\Sipres\\Reportes\\PDF";
-            this.SFD_pdf.Title = "Exportar a PDF";
-            // 
-            // BT_pdf
-            // 
-            this.BT_pdf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_pdf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_pdf.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_pdf.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_pdf.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_pdf.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_pdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_pdf.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_pdf.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_pdf.Image = global::SIPRES.Properties.Resources.pdf;
-            this.BT_pdf.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_pdf.Location = new System.Drawing.Point(2, 398);
-            this.BT_pdf.Name = "BT_pdf";
-            this.BT_pdf.Size = new System.Drawing.Size(89, 38);
-            this.BT_pdf.TabIndex = 4;
-            this.BT_pdf.Text = "PDF";
-            this.BT_pdf.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_pdf.UseVisualStyleBackColor = false;
-            this.BT_pdf.Click += new System.EventHandler(this.BT_pdf_Click);
-            // 
-            // BT_nuevo_mini
-            // 
-            this.BT_nuevo_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_nuevo_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_nuevo_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_nuevo_mini.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_nuevo_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_nuevo_mini.FlatAppearance.BorderSize = 0;
-            this.BT_nuevo_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_nuevo_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_nuevo_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_nuevo_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_nuevo_mini.Image = global::SIPRES.Properties.Resources.Nuevo24;
-            this.BT_nuevo_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_nuevo_mini.Location = new System.Drawing.Point(0, 18);
-            this.BT_nuevo_mini.Name = "BT_nuevo_mini";
-            this.BT_nuevo_mini.Size = new System.Drawing.Size(91, 35);
-            this.BT_nuevo_mini.TabIndex = 2;
-            this.BT_nuevo_mini.Text = "Nuevo";
-            this.BT_nuevo_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_nuevo_mini.UseVisualStyleBackColor = false;
-            this.BT_nuevo_mini.Click += new System.EventHandler(this.BT_nuevo_mini_Click);
-            // 
-            // BT_editar_mini
-            // 
-            this.BT_editar_mini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_editar_mini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_editar_mini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_editar_mini.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_editar_mini.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_editar_mini.FlatAppearance.BorderSize = 0;
-            this.BT_editar_mini.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_editar_mini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_editar_mini.Font = new System.Drawing.Font("Poppins Medium", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_editar_mini.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_editar_mini.Image = global::SIPRES.Properties.Resources.Editar24;
-            this.BT_editar_mini.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_editar_mini.Location = new System.Drawing.Point(3, 62);
-            this.BT_editar_mini.Name = "BT_editar_mini";
-            this.BT_editar_mini.Size = new System.Drawing.Size(89, 38);
-            this.BT_editar_mini.TabIndex = 3;
-            this.BT_editar_mini.Text = "Editar";
-            this.BT_editar_mini.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_editar_mini.UseVisualStyleBackColor = false;
-            this.BT_editar_mini.Click += new System.EventHandler(this.BT_editar_mini_Click);
-            // 
-            // BT_excel
-            // 
-            this.BT_excel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BT_excel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(39)))), ((int)(((byte)(49)))));
-            this.BT_excel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BT_excel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BT_excel.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.BT_excel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Teal;
-            this.BT_excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BT_excel.Font = new System.Drawing.Font("Poppins Medium", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_excel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BT_excel.Image = global::SIPRES.Properties.Resources.xls;
-            this.BT_excel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BT_excel.Location = new System.Drawing.Point(2, 355);
-            this.BT_excel.Name = "BT_excel";
-            this.BT_excel.Size = new System.Drawing.Size(89, 38);
-            this.BT_excel.TabIndex = 5;
-            this.BT_excel.Text = "Excel";
-            this.BT_excel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BT_excel.UseVisualStyleBackColor = false;
-            this.BT_excel.Click += new System.EventHandler(this.BT_excel_Click);
-            // 
-            // BT_limpiar
-            // 
-            this.BT_limpiar.Image = global::SIPRES.Properties.Resources.limpiar24;
-            this.BT_limpiar.Location = new System.Drawing.Point(423, 24);
-            this.BT_limpiar.Name = "BT_limpiar";
-            this.BT_limpiar.Size = new System.Drawing.Size(28, 29);
-            this.BT_limpiar.TabIndex = 1;
-            this.BT_limpiar.UseVisualStyleBackColor = true;
-            this.BT_limpiar.Click += new System.EventHandler(this.BT_limpiar_Click);
-            // 
             // BT_cancelar
             // 
             this.BT_cancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -735,6 +724,18 @@
             this.BT_nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BT_nuevo.UseVisualStyleBackColor = false;
             this.BT_nuevo.Click += new System.EventHandler(this.BT_nuevo_Click);
+            // 
+            // SFD_excel
+            // 
+            this.SFD_excel.Filter = "\"Archivo CSV|*.csv\"";
+            this.SFD_excel.InitialDirectory = "C:\\Sipres\\Reportes\\Excel";
+            // 
+            // SFD_pdf
+            // 
+            this.SFD_pdf.FileName = ".pdf";
+            this.SFD_pdf.Filter = "\"Archivo PDF|*.pdf\"";
+            this.SFD_pdf.InitialDirectory = "C:\\Sipres\\Reportes\\PDF";
+            this.SFD_pdf.Title = "Exportar a PDF";
             // 
             // pictureBox1
             // 

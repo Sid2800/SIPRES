@@ -389,21 +389,13 @@ namespace SIPRES.Vistas
             if (LLenos()) { Modo("E"); }
         }
 
-
-
-
-
-
-
-
-
-
-
-        #endregion
-
         private void BT_salir_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }       
+
+        #endregion
+
+
     }
 }
